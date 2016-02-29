@@ -1,5 +1,6 @@
 ## coding=utf-8
 <%namespace name='static' file='static_content.html'/>
+<% online_help_token = self.online_help_token() if hasattr(self, 'online_help_token') else None %>
 <%!
 from django.core.urlresolvers import reverse
 from django.utils.http import urlquote_plus
@@ -113,6 +114,7 @@ from branding import api as branding_api
 </head>
 
 <body class="${static.dir_rtl()} <%block name='bodyclass'/> lang_${LANGUAGE_CODE}">
+
 <%static:optional_include_mako file="body-initial.html" is_theming_enabled="True" />
 <div id="page-prompt"></div>
 % if not disable_window_wrap:
@@ -121,7 +123,7 @@ from branding import api as branding_api
     <a class="nav-skip" href="<%block name="nav_skip">#content</%block>">${_("Skip to main content")}</a>
 
     % if not disable_header:
-        <%include file="${static.get_template_path('header.html')}" />
+        <%include file="${static.get_template_path('header.html')}" args="online_help_token=online_help_token" />
     % endif
 
     <div role="main" class="content-wrapper" id="content" tabindex="-1">
