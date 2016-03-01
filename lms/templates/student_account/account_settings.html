@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 <!--<%namespace name='static' file='/static_content.html'/>-->
 
 <%inherit file="/main.html" />
+<%def name="online_help_token()"><% return "learneraccountsettings" %></%def>
 <%namespace name='static' file='/static_content.html'/>
 
 <%block name="pagetitle">${_("Account Settings")}</%block>
