@@ -17,8 +17,6 @@ from branding import api as branding_api
 from status.status import get_site_status_msg
 %>
 
-<%page args="online_help_token"/>
-
 ## Provide a hook for themes to inject branding on top.
 <%block name="navigation_top" />
 
@@ -79,9 +77,11 @@ site_status_msg = get_site_status_msg(course_id)
         %endif
       </%block>
     </ol>
-    <ol><li class="nav-item nav-account-help">
-          <h3 class="title"><span class="label"><a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_("Contextual Online Help")}" target="_blank">${_("Help")}</a></span></h3>
-          </li></ol>
+    <ol>
+      <li>
+        <a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_("Contextual Online Help")}" target="_blank">${_("Help")}</a>
+      </li>
+    </ol>
     <ol class="user">
       <li class="primary">
         <a href="${reverse('dashboard')}" class="user-link">
