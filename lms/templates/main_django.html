@@ -28,7 +28,7 @@
   <div class="window-wrap" dir="${static.dir_rtl()}">
     <a class="nav-skip" href="{% block nav_skip %}#content{% endblock %}">{% trans "Skip to main content" %}</a>
     {% with course=request.course %}
-      {% include "header.html"|microsite_template_path %}
+      {% include "header.html"|microsite_template_path with online_help_token=online_help_token  %}
     {% endwith %}
     <div role="main" class="content-wrapper" id="content" tabindex="-1">
       {% block body %}{% endblock %}
