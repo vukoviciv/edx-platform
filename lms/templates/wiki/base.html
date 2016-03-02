@@ -1,10 +1,15 @@
 {% extends "main_django.html" %}
-{% with online_help_token="wiki" %}
 {% load pipeline %}{% load sekizai_tags i18n microsite %}{% load url from future %}{% load staticfiles %}
 
 {% block title %}<title>{% block pagetitle %}{% endblock %} | {% trans "Wiki" %} | {% platform_name %}</title>{% endblock %}
 
 {% block bodyclass %}view-in-course view-wiki{% endblock %}
+
+{% block include_header %}
+  {% with online_help_token='wiki' %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock include_header %}
 
 {% block headextra %}
   <script type="text/javascript" src="/i18n.js"></script>
@@ -78,4 +83,3 @@
   </section>
 
 {% endblock %}
-{% endwith %}

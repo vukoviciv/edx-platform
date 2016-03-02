@@ -1,6 +1,11 @@
 {% extends "main_django.html" %}
-
 {% load scope i18n %}
+
+{% block include_header %}
+  {% with online_help_token='authorize' %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock include_header %}
 
 {% block bodyclass %}oauth2{% endblock %}
 

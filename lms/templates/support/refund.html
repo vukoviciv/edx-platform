@@ -1,10 +1,18 @@
 {% extends "main_django.html" %}
 {% load i18n %}
+
+{% block include_header %}
+  {% with online_help_token='refund' %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock include_header %}
+
 {% block title %}
 <title>
 Manual Refund
 </title>
 {% endblock %}
+
 {% block headextra %}
 
 <style type="text/css">
