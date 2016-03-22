@@ -3,6 +3,7 @@
     define([
         'gettext', 'jquery', 'underscore', 'backbone', 'logger',
         'edx-ui-toolkit/js/utils/html-utils',
+        'edx-ui-toolkit/js/utils/string-utils',
         'common/js/components/collections/paging_collection',
         'js/views/fields',
         'js/views/message_banner',
@@ -13,8 +14,8 @@
         'js/student_profile/views/learner_profile_view',
         'js/student_profile/models/badges_model',
         'js/student_profile/views/badge_list_container'
-    ], function(gettext, $, _, Backbone, Logger, HtmlUtils, PagingCollection, FieldsView, MessageBannerView,
-                AccountSettingsModel, AccountPreferencesModel, AccountSettingsFieldViews,
+    ], function(gettext, $, _, Backbone, Logger, HtmlUtils, StringUtils, PagingCollection, FieldsView,
+                MessageBannerView, AccountSettingsModel, AccountPreferencesModel, AccountSettingsFieldViews,
                 LearnerProfileFieldsView, LearnerProfileView, BadgesModel, BadgeListContainer) {
         return function(options) {
 
@@ -48,7 +49,7 @@
                 required: true,
                 editable: 'always',
                 showMessages: false,
-                title: HtmlUtils.interpolateHtml(
+                title: StringUtils.interpolate(
                     gettext('{platform_name} learners can see my:'),
                     {platform_name: options.platform_name}
                 ),
