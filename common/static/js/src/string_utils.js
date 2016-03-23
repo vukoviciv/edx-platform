@@ -48,7 +48,7 @@ var edx = edx || {};
     };
     this.interpolate_text = interpolate_text;
 
-    edx.StringUtils = (function() {
+    edx.StringUtils = edx.StringUtils || (function() {
         var interpolate;
 
         /**
@@ -77,8 +77,8 @@ var edx = edx || {};
          *   'You are enrolling in <span class="course-title">Rock &amp; Roll 101</span>'
          *
          * Note: typically the formatString will need to be internationalized, in which
-         * case it will be wrapped with a call to an i18n lookup function. In Django,
-         * this would look like:
+         * case it will be wrapped with a call to an i18n lookup function. If using
+         * the Django i18n library this would look like:
          *
          *   HtmlUtils.interpolate(
          *       gettext('You are enrolling in {spanStart}{courseName}{spanEnd}'),
@@ -108,7 +108,7 @@ var edx = edx || {};
      * This is for use by code that does not use RequireJS and hence can't load HtmlUtils
      * dynamically.
      */
-    edx.HtmlUtils = (function() {
+    edx.HtmlUtils = edx.HtmlUtils || (function() {
         var ensureHtml, interpolateHtml, joinHtml, HTML, template, setHtml, append, prepend;
 
         /**
@@ -239,19 +239,20 @@ var edx = edx || {};
          * Note: This helper function makes the following context parameters
          * available to the template in addition to those passed in:
          *
-         *   * HtmlUtils: the HtmlUtils helper class
+         *   - HtmlUtils: the HtmlUtils helper class
+         *   - StringUtils: the StringUtils helper class
          *
          * @param {string} text
          * @param {object} settings
          * @returns {function} A function that returns a rendered HTML snippet.
          */
         template = function(text, settings) {
-            var HtmlUtils = this,
-                rawTemplate = _.template(text, settings),
+            var rawTemplate = _.template(text, settings),
                 template = function(data) {
                     var augmentedData = _.extend(
                         {
-                            HtmlUtils: HtmlUtils
+                            StringUtils: edx.StringUtils,
+                            HtmlUtils: edx.HtmlUtils
                         },
                         data || {}
                     );

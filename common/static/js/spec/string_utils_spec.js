@@ -1,4 +1,4 @@
-(function(edx) {
+(function(edx, interpolate_text, interpolate_ntext) {  // jshint ignore:line
     'use strict';
     /**
      * Runs func as a test case multiple times, using entries from data as arguments. Like Python's DDT.
@@ -6,9 +6,10 @@
      *      of the test case, and the list of arguments is applied as arguments to func.
      * @param func The function that actually expresses the logic of the test.
      */
-    var withData = function (data, func) {
+    var withData = function(data, func) {
+        var name;
         /* jshint loopfunc:true */
-        for (var name in data) {
+        for (name in data) {
             if (data.hasOwnProperty(name)) {
                 (function(name) {
                     it(name, function() {
@@ -29,13 +30,19 @@
         });
     });
 
-    describe('interpolate_text', function () {
-        it('replaces placeholder values', function () {
+    describe('interpolate_text', function() {
+        it('replaces placeholder values', function() {
             expect(interpolate_text('contains {adjective} students', {adjective: 'awesome'})).
             toBe('contains awesome students');
         });
     });
 
+    /**
+     * Temporary clone of the UI Toolkit's StringUtils tests.
+     *
+     * The intention is that these will be removed once the UI Toolkit's
+     * versions are made available to code that cannot use RequireJS.
+     */
     describe('edx.StringUtils', function() {
         describe('interpolate', function() {
             it('can interpolate a string with no parameters provided', function() {
@@ -64,6 +71,12 @@
         });
     });
 
+    /**
+     * Temporary clone of the UI Toolkit's HtmlUtils tests.
+     *
+     * The intention is that these will be removed once the UI Toolkit's
+     * versions are made available to code that cannot use RequireJS.
+     */
     describe('edx.HtmlUtils', function() {
         beforeEach(function() {
             setFixtures('<div class="test"></div>');
@@ -194,9 +207,16 @@
                 expect(result.toString()).toEqual('Hello, world');
             });
 
-            it('adds HtmlView as an additional context variable for the template', function() {
+            it('adds HtmlUtils as an additional context variable for the template', function() {
                 var template = edx.HtmlUtils.template('I love <%= HtmlUtils.ensureHtml("Rock & Roll") %>');
                 expect(template().toString()).toEqual('I love Rock &amp; Roll');
+            });
+
+            it('adds StringUtils as an additional context variable for the template', function() {
+                var template = edx.HtmlUtils.template(
+                    '<%= StringUtils.interpolate("Hello, {name}", {name: "world"}) %>'
+                );
+                expect(template().toString()).toEqual('Hello, world');
             });
         });
 
@@ -277,4 +297,4 @@
             });
         });
     });
-})(edx);
+})(edx, interpolate_text, interpolate_ntext);  // jshint ignore:line
