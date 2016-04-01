@@ -216,7 +216,7 @@ if FEATURES.get('ENABLE_THIRD_PARTY_AUTH') and 'third_party_auth.dummy.DummyBack
     AUTHENTICATION_BACKENDS = ['third_party_auth.dummy.DummyBackend'] + list(AUTHENTICATION_BACKENDS)
 
 ############## ECOMMERCE API CONFIGURATION SETTINGS ###############
-ECOMMERCE_PUBLIC_URL_ROOT = "http://localhost:8002"
+ECOMMERCE_PUBLIC_URL_ROOT = ENV_TOKENS.get('ECOMMERCE_PUBLIC_URL_ROOT', "http://localhost:8002")
 
 ###################### Cross-domain requests ######################
 FEATURES['ENABLE_CORS_HEADERS'] = True

@@ -24,5 +24,11 @@ class CommerceConfiguration(ConfigurationModel):
         help_text=_('Path to single course checkout page hosted by the E-Commerce service.')
     )
 
+    bulk_purchase_checkout_page = models.CharField(
+        max_length=255,
+        default='/basket/bulk-purchase/',
+        help_text=_('Path to bulk purhcase checkout page hosted by the E-Commerce service.')
+    )
+
     def __unicode__(self):
         return "Commerce configuration"

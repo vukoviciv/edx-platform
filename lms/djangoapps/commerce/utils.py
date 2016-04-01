@@ -58,10 +58,22 @@ class EcommerceService(object):
         ecommerce_url_root = helpers.get_value('ECOMMERCE_PUBLIC_URL_ROOT', settings.ECOMMERCE_PUBLIC_URL_ROOT)
         return urljoin(ecommerce_url_root, self.config.single_course_checkout_page)
 
-    def checkout_page_url(self, sku):
+    def bulk_purchase_page_url(self):
+        """ Return the URL for the checkout page.
+
+        Example:
+            http://localhost:8002/basket/bulk_purchase/
+        """
+        ecommerce_url_root = helpers.get_value('ECOMMERCE_PUBLIC_URL_ROOT', settings.ECOMMERCE_PUBLIC_URL_ROOT)
+        return urljoin(ecommerce_url_root, self.config.bulk_purchase_checkout_page)
+
+    def checkout_page_url(self, sku, workflow="single_item"):
         """ Construct the URL to the ecommerce checkout page and include a product.
 
         Example:
             http://localhost:8002/basket/single_item/?sku=5H3HG5
         """
-        return "{}?sku={}".format(self.payment_page_url(), sku)
+        if workflow == "single_item":
+            return "{}?sku={}".format(self.payment_page_url(), sku)
+        if workflow == "bulk_purchase":
+            return "{}?sku={}&qty=10".format(self.bulk_purchase_page_url(), sku)

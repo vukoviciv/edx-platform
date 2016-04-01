@@ -748,6 +748,7 @@ def dashboard(request):
         context.update({
             'use_ecommerce_payment_flow': True,
             'ecommerce_payment_page': ecommerce_service.payment_page_url(),
+            'ecommerce_bulk_purchase_page': ecommerce_service.bulk_purchase_page_url(),
         })
 
     return render_to_response('dashboard.html', context)

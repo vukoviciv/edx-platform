@@ -353,6 +353,17 @@ from student.helpers import (
                       <span class="copy" id="upgrade-to-verified">${_("Upgrade to Verified")}</span>
                     </span>
                   </a>
+                  <br />
+                  % if use_ecommerce_payment_flow and course_mode_info['verified_sku']:
+                    <a class="action action-upgrade" href="${ecommerce_bulk_purchase_page}?sku=${course_mode_info['verified_sku']}&qty=8">
+                  % else:
+                    <a class="action action-upgrade" href="${reverse('verify_student_upgrade_and_verify', kwargs={'course_id': unicode(course_overview.id)})}" data-course-id="${course_overview.id}" data-user="${user.username}">
+                  % endif
+                      <i class="action-upgrade-icon"></i>
+                    <span class="wrapper-copy">
+                      <span class="copy" id="upgrade-to-verified">${_("Buy Some For Your Friends")}</span>
+                    </span>
+                  </a>
                 </div>
             </div>
           </div>
