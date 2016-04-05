@@ -13,7 +13,8 @@
             },
 
             blockUrl: function () {
-                return '/courses/' + this.get('course_id') + '/jump_to/' + this.get('usage_id');
+                return '/courses/' + encodeURIComponent(this.get('course_id')) + '/jump_to/' +
+                    encodeURIComponent(this.get('usage_id'));
             }
         });
     });
