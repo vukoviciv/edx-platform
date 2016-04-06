@@ -2,10 +2,11 @@
     'use strict';
     define(['gettext', 'jquery', 'underscore', 'backbone', 'logger', 'moment',
             'common/js/components/views/paging_header', 'common/js/components/views/paging_footer',
+            'edx-ui-toolkit/js/utils/html-utils',
             'text!templates/bookmarks/bookmarks-list.underscore'
         ],
         function (gettext, $, _, Backbone, Logger, _moment,
-                  PagingHeaderView, PagingFooterView, BookmarksListTemplate) {
+                  PagingHeaderView, PagingFooterView, HtmlUtils, BookmarksListTemplate) {
 
         var moment = _moment || window.moment;
 
@@ -25,7 +26,7 @@
             },
 
             initialize: function (options) {
-                this.template = _.template(BookmarksListTemplate);
+                this.template = HtmlUtils.template(BookmarksListTemplate);
                 this.loadingMessageView = options.loadingMessageView;
                 this.errorMessageView = options.errorMessageView;
                 this.langCode = $(this.el).data('langCode');
@@ -40,7 +41,10 @@
                     bookmarksCollection: this.collection,
                     humanFriendlyDate: this.humanFriendlyDate
                 };
-                this.$el.html(this.template(data));
+                HtmlUtils.setHtml(
+                    this.$el,
+                    this.template(data)
+                );
                 this.pagingHeaderView.setElement(this.$('.paging-header')).render();
                 this.pagingFooterView.setElement(this.$('.paging-footer')).render();
                 this.delegateEvents();
