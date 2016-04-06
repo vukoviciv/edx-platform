@@ -15,9 +15,6 @@
             coursewareContentEl: '#course-content',
             coursewareResultsWrapperEl: '.courseware-results-wrapper',
 
-            errorIcon: '<i class="fa fa-fw fa-exclamation-triangle message-error" aria-hidden="true"></i>',
-            loadingIcon: '<i class="fa fa-fw fa-spinner fa-pulse message-in-progress" aria-hidden="true"></i>',
-
             errorMessage: gettext('An error has occurred. Please try again.'),
             loadingMessage: gettext('Loading'),
 
@@ -109,7 +106,7 @@
             },
 
             showLoadingMessage: function () {
-                this.loadingMessageView.showMessage(this.loadingMessage, this.loadingIcon);
+                this.loadingMessageView.showMessage(this.loadingMessage);
             },
 
             hideLoadingMessage: function () {
@@ -117,7 +114,7 @@
             },
 
             showErrorMessage: function () {
-                this.errorMessageView.showMessage(this.errorMessage, this.errorIcon);
+                this.errorMessageView.showMessage(this.errorMessage);
             },
 
             hideErrorMessage: function () {
