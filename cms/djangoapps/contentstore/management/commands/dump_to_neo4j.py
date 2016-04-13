@@ -181,6 +181,12 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        """
+        Management command to dump modulestore data to csvs.
+        Also generates the command necessary to import those csvs into neo4j.
+        """
+        # TODO: switch this to use mkdtemp_clean.
+        # https://github.com/edx/edx-platform/blob/master/openedx/core/lib/tempdir.py#L9
         csv_dir = tempfile.mkdtemp(prefix="csvs_", dir="/tmp")
         neo4j_root = os.path.abspath(options["neo4j_root"])
         module_store_serializer = ModuleStoreSerializer(csv_dir, neo4j_root)
