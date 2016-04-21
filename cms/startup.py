@@ -11,7 +11,8 @@ from openedx.core.lib.django_startup import autostartup
 import django
 from monkey_patch import (
     third_party_auth,
-    django_db_models_options
+    django_db_models_options,
+    collectstatic
 )
 
 import xmodule.x_module
@@ -26,6 +27,7 @@ def run():
     """
     third_party_auth.patch()
     django_db_models_options.patch()
+    collectstatic.patch()
 
     # Comprehensive theming needs to be set up before django startup,
     # because modifying django template paths after startup has no effect.
