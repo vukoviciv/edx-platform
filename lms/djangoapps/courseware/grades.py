@@ -213,7 +213,7 @@ def answer_distributions(course_key):
     entries for a given course with type="problem" and a grade that is not null.
     This means that we only count LoncapaProblems that people have submitted.
     Other types of items like ORA or sequences will not be collected. Empty
-    Loncapa problem state that gets created from runnig the progress page is
+    Loncapa problem state that gets created from running the progress page is
     also not counted.
 
     This method accesses the StudentModule table directly instead of using the
@@ -528,7 +528,7 @@ def progress_summary(student, request, course, field_data_cache=None, scores_cli
 
 def get_weighted_scores(student, course, field_data_cache=None, scores_client=None):
     """
-    Uses the _progress_summary method to return a ProgressSummmary object
+    Uses the _progress_summary method to return a ProgressSummary object
     containing details of a students weighted scores for the course.
     """
     request = _get_mock_request(student)
