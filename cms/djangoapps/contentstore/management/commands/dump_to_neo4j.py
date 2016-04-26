@@ -187,7 +187,8 @@ class Command(BaseCommand):
         """
         # TODO: switch this to use mkdtemp_clean.
         # https://github.com/edx/edx-platform/blob/master/openedx/core/lib/tempdir.py#L9
-        csv_dir = tempfile.mkdtemp(prefix="csvs_", dir="/tmp")
+        # csv_dir = tempfile.mkdtemp(prefix="csvs_", dir="/tmp")
+        csv_dir = os.path.abspath(options['csv_dir'])
         neo4j_root = os.path.abspath(options["neo4j_root"])
         module_store_serializer = ModuleStoreSerializer(csv_dir, neo4j_root)
         module_store_serializer.dump_to_csv()

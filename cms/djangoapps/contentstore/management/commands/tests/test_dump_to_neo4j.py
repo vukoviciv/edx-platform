@@ -1,3 +1,4 @@
+ # coding=utf-8
 from django.core.management import CommandError, call_command
 
 from xmodule.modulestore.tests.django_utils import SharedModuleStoreTestCase
@@ -37,8 +38,13 @@ class TestModuleStoreSerializer(SharedModuleStoreTestCase):
         cls.video2 = ItemFactory.create(parent=cls.vertical, category='video')
 
     def setUp(self):
+        super(TestModuleStoreSerializer, self).setUp()
         self.csv_dir = tempfile.mkdtemp("csv")
         self.neo4j_root = tempfile.mkdtemp("neo4j")
+
+        self.modulestore_serializer = ModuleStoreSerializer(
+            self.csv_dir, self.neo4j_root
+        )
 
         # Clean temp directories
         self.addCleanup(shutil.rmtree, self.csv_dir)
@@ -48,9 +54,8 @@ class TestModuleStoreSerializer(SharedModuleStoreTestCase):
         """
         Test that the serialize_items method works as expected
         """
-        modulestore_serializer = ModuleStoreSerializer(self.csv_dir, self.neo4j_root)
         items = modulestore().get_items(self.course.id)
-        blocks_by_type = modulestore_serializer.serialize_items(items, self.course.id)
+        blocks_by_type = self.modulestore_serializer.serialize_items(items, self.course.id)
         self.assertItemsEqual(
             [(block_type, len(blocks)) for (block_type, blocks) in blocks_by_type.iteritems()],
             BLOCK_TYPES
@@ -62,9 +67,31 @@ class TestModuleStoreSerializer(SharedModuleStoreTestCase):
         self.assertEqual(serialized_course['course_key'], unicode(self.course.id))
         self.assertFalse(serialized_course['self_paced'])
 
+    @ddt.data(
+        (None, 'NULL'), ("'single'", "single"), ('"double', 'double')
+    )
+    @ddt.unpack
+    def test_normalize_value(self, input_value, expected_value):
+
+        normalized_value = self.modulestore_serializer.normalize_value(input_value)
+        self.assertEqual(normalized_value, expected_value)
+
+    def test_get_field_names_for_type(self):
+
+        fields, block_type = self.modulestore_serializer.serialize_item(
+            self.problem, self.course.id
+        )
+        field_names = self.modulestore_serializer.get_field_names_for_type(
+            block_type, [fields]
+        )
+        self.assertEqual(len(field_names), 56)
+        self.assertIn('type:LABEL', field_names)
+        self.assertIn('location:ID', field_names)
+        self.assertIn('student_answers', field_names)
+
     def test_csvs_written(self):
         """
-        Tests that there's one — and only one — csv per block type.
+        Tests that there's one -- and only one -- csv per block type.
         """
         call_command(
             'dump_to_neo4j', csv_dir=self.csv_dir, neo4j_root=self.neo4j_root
@@ -84,6 +111,7 @@ class TestModuleStoreSerializer(SharedModuleStoreTestCase):
             'dump_to_neo4j', csv_dir=self.csv_dir, neo4j_root=self.neo4j_root
         )
         filename = self.csv_dir + "/{block_type}.csv".format(block_type=block_type)
+        # import ipdb; ipdb.set_trace()
         with open(filename) as block_type_csvfile:
             rows = list(csv.reader(block_type_csvfile))
 
