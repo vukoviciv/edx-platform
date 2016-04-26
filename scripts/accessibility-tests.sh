@@ -9,3 +9,9 @@ SELENIUM_BROWSER=phantomjs paver test_a11y
 
 echo "Generating coverage report..."
 paver a11y_coverage
+
+echo "Running pa11ycrawler against test course..."
+paver pa11ycrawler --fasttest
+
+echo "Generating coverage report..."
+paver pa11ycrawler_coverage
