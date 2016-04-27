@@ -11,7 +11,7 @@ echo "Generating coverage report..."
 paver a11y_coverage
 
 echo "Running pa11ycrawler against test course..."
-paver pa11ycrawler
+paver pa11ycrawler --fasttest --fetch-course
 
 echo "Generating coverage report..."
 paver pa11ycrawler_coverage
