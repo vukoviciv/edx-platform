@@ -34,44 +34,40 @@ from openedx.core.djangoapps.course_groups.partition_scheme import get_cohorted_
 
 <div class="batch-enrollment membership-section">
   <h2> ${_("Batch Enrollment")} </h2>
-  <p>
-    <label for="student-ids">
+    <label>
       ${_("Enter email addresses and/or usernames separated by new lines or commas.")}
-      ${_("You will not get notification for emails that bounce, so please double-check spelling.")} </label>
-    <textarea rows="6" name="student-ids" placeholder="${_("Email Addresses/Usernames")}" spellcheck="false"></textarea>
-  </p>
+      ${_("You will not get notification for emails that bounce, so please double-check spelling.")}
+      <textarea rows="6" name="student-ids" placeholder="${_("Email Addresses/Usernames")}" spellcheck="false"></textarea>
+    </label>
   <input type="hidden" id="is_course_white_label" value="${section_data['is_white_label']}">
   % if section_data['is_white_label']:
-  <p>
-    <label for="reason-field-id">
+    <label>
       ${_("Enter the reason why the students are to be manually enrolled or unenrolled.")}
       ${_("This cannot be left blank and will be recorded and presented in Enrollment Reports.")}
-      ${_("Therefore, please give enough detail to account for this action.")} </label>
-    <textarea rows="2" id="reason-field-id" name="reason-field" placeholder="${_('Reason')}" spellcheck="false"></textarea>
-  </p>
+      ${_("Therefore, please give enough detail to account for this action.")}
+      <textarea rows="2" id="reason-field-id" name="reason-field" placeholder="${_('Reason')}" spellcheck="false"></textarea>
+    </label>
   %endif
   <div class="enroll-option">
-    <input type="checkbox" name="auto-enroll" value="Auto-Enroll" checked="yes">
+    <input type="checkbox" name="auto-enroll" id="auto-enroll" value="Auto-Enroll" checked="yes" aria-describedby="auto-enroll-tip">
     <label for="auto-enroll">${_("Auto Enroll")}</label>
     <div class="hint auto-enroll-hint">
       <span class="hint-caret"></span>
-      <p>
-	${_("If this option is <em>checked</em>, users who have not yet registered for {platform_name} will be automatically enrolled.").format(platform_name=settings.PLATFORM_NAME)}
-	${_("If this option is left <em>unchecked</em>, users who have not yet registered for {platform_name} will not be enrolled, but will be allowed to enroll once they make an account.").format(platform_name=settings.PLATFORM_NAME)}
-	<br /><br />
-	${_("Checking this box has no effect if 'Unenroll' is selected.")}
+      <p id="auto-enroll-tip">
+    	${_("If this option is <em>checked</em>, users who have not yet registered for {platform_name} will be automatically enrolled.").format(platform_name=settings.PLATFORM_NAME)}
+    	${_("If this option is left <em>unchecked</em>, users who have not yet registered for {platform_name} will not be enrolled, but will be allowed to enroll once they make an account.").format(platform_name=settings.PLATFORM_NAME)}
+    	<br /><br />
+    	${_("Checking this box has no effect if 'Unenroll' is selected.")}
       </p>
     </div>
   </div>
 
   <div class="enroll-option">
-    <input type="checkbox" name="email-students" value="Notify-students-by-email" checked="yes">
+    <input type="checkbox" name="email-students" id="email-students" value="Notify-students-by-email" checked="yes" aria-describedby="email-students-tip">
     <label for="email-students">${_("Notify users by email")}</label>
     <div class="hint email-students-hint">
       <span class="hint-caret"></span>
-      <p>
-	${_("If this option is <em>checked</em>, users will receive an email notification.")}
-      </p>
+      <p id="email-students-tip">${_("If this option is <em>checked</em>, users will receive an email notification.")}</p>
     </div>
   </div>
 
@@ -88,14 +84,14 @@ from openedx.core.djangoapps.course_groups.partition_scheme import get_cohorted_
 
   <div class="auto_enroll auto_enroll_csv">
     <h2> ${_("Register/Enroll Students")} </h2>
-    <p>
-    ${_("To register and enroll a list of users in this course, choose a CSV file that contains the following columns in this exact order: email, username, name, and country. Please include one student per row and do not include any headers, footers, or blank lines.")}
-    </p>
+    <p>${_("To register and enroll a list of users in this course, choose a CSV file that contains the following columns in this exact order: email, username, name, and country. Please include one student per row and do not include any headers, footers, or blank lines.")}</p>
     <form id="student-auto-enroll-form" method="post" action="${ section_data['upload_student_csv_button_url'] }" enctype="multipart/form-data">
       <div class="customBrowseBtn">
+        <label for="browseFile" class="sr">${_("Upload a CSV for bulk enrollment")}</label>
         <input disabled="disabled" id="browseFile" placeholder="choose file" />
         <div class="file-browse btn btn-primary">
             <span class="browse"> Browse </span>
+            <label for="browseBtn" class="sr">${_("Upload a CSV for bulk enrollment")}</label>
             <input class="file_field" id="browseBtn" name="students_list" type="file" accept=".csv"/>
         </div>
       </div>
@@ -112,34 +108,31 @@ from openedx.core.djangoapps.course_groups.partition_scheme import get_cohorted_
 %if section_data['access']['instructor']:
 <div class="batch-beta-testers membership-section">
   <h2> ${_("Batch Beta Tester Addition")} </h2>
-  <p>
-    <label for="student-ids-for-beta">
+    <label>
       ${_("Enter email addresses and/or usernames separated by new lines or commas.")}<br/>
       ${_("Note: Users must have an activated {platform_name} account before they can be enrolled as beta testers.").format(platform_name=settings.PLATFORM_NAME)}
+      <textarea rows="6" cols="50" name="student-ids-for-beta" placeholder="${_("Email Addresses/Usernames")}" spellcheck="false"></textarea>
     </label>
 
-  <textarea rows="6" cols="50" name="student-ids-for-beta" placeholder="${_("Email Addresses/Usernames")}" spellcheck="false"></textarea>
-  </p>
-
   <div class="enroll-option">
-    <input type="checkbox" name="auto-enroll" value="Auto-Enroll" checked="yes">
+    <input type="checkbox" name="auto-enroll" id="auto-enroll-beta" value="Auto-Enroll" checked="yes" aria-describedby="auto-enroll-beta-tip">
     <label for="auto-enroll-beta">${_("Auto Enroll")}</label>
     <div class="hint auto-enroll-beta-hint">
       <span class="hint-caret"></span>
-      <p>
-	${_("If this option is <em>checked</em>, users who have not enrolled in your course will be automatically enrolled.")}
-	<br /><br />
-	${_("Checking this box has no effect if 'Remove beta testers' is selected.")}
+      <p id="auto-enroll-beta-tip">
+    	${_("If this option is <em>checked</em>, users who have not enrolled in your course will be automatically enrolled.")}
+    	<br /><br />
+    	${_("Checking this box has no effect if 'Remove beta testers' is selected.")}
       </p>
     </div>
   </div>
 
   <div class="enroll-option">
-    <input type="checkbox" name="email-students-beta" value="Notify-students-by-email" checked="yes">
+    <input type="checkbox" name="email-students-beta" id="email-students-beta" value="Notify-students-by-email" checked="yes" aria-describedby="email-students-beta-tip">
     <label for="email-students-beta">${_("Notify users by email")}</label>
     <div class="hint email-students-beta-hint">
       <span class="hint-caret"></span>
-      <p> ${_("If this option is <em>checked</em>, users will receive an email notification.")}</p>
+      <p id="email-students-beta-tip"> ${_("If this option is <em>checked</em>, users will receive an email notification.")}</p>
     </div>
   </div>
 
@@ -163,11 +156,11 @@ from openedx.core.djangoapps.course_groups.partition_scheme import get_cohorted_
 
   <div class="wrapper-member-select">
     ## Translators: an "Administrator Group" is a group, such as Course Staff, that users can be added to.
-    <label for="member-lists-selector">${_("Select a course team role:")}</label>
-    <select id="member-lists-selector" class="member-lists-selector">
-      <option> ${_("Getting available lists...")} </option>
-    </select>
-
+    <label>${_("Select a course team role:")}
+        <select id="member-lists-selector" class="member-lists-selector">
+          <option> ${_("Getting available lists...")} </option>
+        </select>
+    </label>
   </div>
 
 
