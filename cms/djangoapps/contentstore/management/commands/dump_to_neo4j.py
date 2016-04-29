@@ -25,7 +25,16 @@ class ModuleStoreSerializer(object):
         self.field_names_by_block_type = {}
         self.all_courses = modulestore().get_course_summaries()
 
+    def upload_to_s3(self):
+        """Upload generated csvs to an s3 bucket."""
+        pass
+
     def dump_to_csv(self):
+        """
+        Dump the modulestore to csv files: one file per kind
+        of XBlock, and one file to map the parent-child relationships
+        between them.
+        """
         number_of_courses = len(self.all_courses)
         for index, course in enumerate(self.all_courses):
             log.info(
@@ -36,6 +45,15 @@ class ModuleStoreSerializer(object):
             self.dump_course_items_to_csv(course.id)
 
     def dump_course_items_to_csv(self, course_key):
+        """
+        Args:
+            course_key: a course key
+
+        Returns: None
+
+        For each course, add its serialized items to its appropriate items
+        and relationship csvs.
+        """
         items = modulestore().get_items(course_key)
         blocks_by_type = self.serialize_items(items, course_key)
         self.dump_blocks_to_csv(blocks_by_type)
@@ -44,10 +62,16 @@ class ModuleStoreSerializer(object):
         self.dump_relationships_to_csv(relationships)
 
     def dump_blocks_to_csv(self, blocks_by_type):
-        for filename in os.listdir(self.csv_dir):
-            filename = os.path.abspath(os.path.join(self.csv_dir, filename))
-            if filename.endswith(".csv"):
-                os.unlink(filename)
+        """
+        Args:
+            blocks_by_type: dictionary mapping block types to a list of
+            serialized blocks of that type:
+            {block_type: [{block_field: value}]}
+
+        Returns: None
+
+        Dump serialized versions of blocks to appropriate csv files.
+        """
         for block_type, serialized_xblocks in blocks_by_type.iteritems():
             field_names = self.get_field_names_for_type(block_type, serialized_xblocks)
 
@@ -190,6 +214,8 @@ class Command(BaseCommand):
         # csv_dir = tempfile.mkdtemp(prefix="csvs_", dir="/tmp")
         csv_dir = os.path.abspath(options['csv_dir'])
         neo4j_root = os.path.abspath(options["neo4j_root"])
+        self.clear_csv_dir()
+
         module_store_serializer = ModuleStoreSerializer(csv_dir, neo4j_root)
         module_store_serializer.dump_to_csv()
         print("Use the following command to import your csvs into neo4j")
@@ -219,3 +245,14 @@ class Command(BaseCommand):
         # dangling pointers
         command += " --bad-tolerance=1000000"
         return command.format(neo4j_root=module_store_serializer.neo4j_root)
+
+    def clear_csv_dir(self):
+        """
+        Clear out the csv dir before dumping course data to it.
+        Returns: None
+        """
+        for filename in os.listdir(self.csv_dir):
+            filename = os.path.abspath(os.path.join(self.csv_dir, filename))
+            # delete csv files if they already exist
+            if filename.endswith(".csv"):
+                os.unlink(filename)
