@@ -252,7 +252,7 @@ class Command(BaseCommand):
         Returns: None
         """
         for filename in os.listdir(csv_dir):
-            filename = os.path.abspath(os.path.join(self.csv_dir, filename))
+            filename = os.path.abspath(os.path.join(csv_dir, filename))
             # delete csv files if they already exist
             if filename.endswith(".csv"):
                 os.unlink(filename)
