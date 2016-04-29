@@ -214,7 +214,7 @@ class Command(BaseCommand):
         # csv_dir = tempfile.mkdtemp(prefix="csvs_", dir="/tmp")
         csv_dir = os.path.abspath(options['csv_dir'])
         neo4j_root = os.path.abspath(options["neo4j_root"])
-        self.clear_csv_dir()
+        self.clear_csv_dir(csv_dir)
 
         module_store_serializer = ModuleStoreSerializer(csv_dir, neo4j_root)
         module_store_serializer.dump_to_csv()
@@ -246,12 +246,12 @@ class Command(BaseCommand):
         command += " --bad-tolerance=1000000"
         return command.format(neo4j_root=module_store_serializer.neo4j_root)
 
-    def clear_csv_dir(self):
+    def clear_csv_dir(self, csv_dir):
         """
         Clear out the csv dir before dumping course data to it.
         Returns: None
         """
-        for filename in os.listdir(self.csv_dir):
+        for filename in os.listdir(csv_dir):
             filename = os.path.abspath(os.path.join(self.csv_dir, filename))
             # delete csv files if they already exist
             if filename.endswith(".csv"):
