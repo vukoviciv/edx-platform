@@ -34,7 +34,7 @@ from openedx.core.djangolib.markup import Text, HTML
                 isUnitPage: false,
                 page_size: 10,
                 canEdit: ${can_edit | n, dump_js_escaped_json},
-                showChildrenPreviews: ${show_children_previews | n, dump_js_escaped_json}
+                showChildrenPreviews: ${context_library.show_children_previews | n, dump_js_escaped_json}
             }
         );
     });
