@@ -31,7 +31,7 @@ requirejs.config({
         "underscore.string": "xmodule_js/common_static/common/js/vendor/underscore.string",
         "backbone": "xmodule_js/common_static/common/js/vendor/backbone-min",
         "backbone.associations": "xmodule_js/common_static/js/vendor/backbone-associations-min",
-        "backbone.paginator": "xmodule_js/common_static/js/vendor/backbone.paginator.min",
+        "backbone.paginator": "xmodule_js/common_static/common/js/vendor/backbone.paginator",
         "backbone-relational": "xmodule_js/common_static/js/vendor/backbone-relational.min",
         "tinymce": "xmodule_js/common_static/js/vendor/tinymce/js/tinymce/tinymce.full.min",
         "jquery.tinymce": "xmodule_js/common_static/js/vendor/tinymce/js/tinymce/jquery.tinymce",
@@ -46,6 +46,7 @@ requirejs.config({
         "jasmine-imagediff": "xmodule_js/common_static/js/vendor/jasmine-imagediff",
         "jasmine-stealth": "xmodule_js/common_static/js/libs/jasmine-stealth",
         "jasmine-waituntil": "xmodule_js/common_static/js/libs/jasmine-waituntil",
+        "paging-collection": "edx-ui-toolkit/js/pagination/paging-collection",
         "draggabilly": "xmodule_js/common_static/js/vendor/draggabilly",
         "domReady": "xmodule_js/common_static/js/vendor/domReady",
         "URI": "xmodule_js/common_static/js/vendor/URI.min",
@@ -209,6 +210,9 @@ requirejs.config({
         },
         "afontgarde": {
             exports: "AFontGarde"
+        },
+        "paging-collection": {
+            deps: ["jquery", "underscore", "backbone.paginator"]
         }
     }
 });
