@@ -44,13 +44,6 @@ Parameters
 * course_key - The identifier for the course whose details you want to get.
   For example, ``edX%2FDemoX.1%2F2014``.
 
-* depth
-
-* requested_fields
-
-* block_counts
-
-
 =====================
 Response Values
 =====================
