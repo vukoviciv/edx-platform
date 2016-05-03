@@ -81,7 +81,7 @@ source, template_path = Loader(engine).load_template_source(path)
     <script type="text/javascript">
         (function (require) {
             % if settings.REQUIRE_DEBUG:
-                require(['${module_name | n, js_escaped_string}'], function (${class_name | n, js_escaped_string}) {
+                require(['${module_name | n, js_escaped_string}'], function (${class_name | n, decode.utf8}) {
                     ${caller.body() | n, decode.utf8}
                 });
             % else:
@@ -90,7 +90,7 @@ source, template_path = Loader(engine).load_template_source(path)
                 ## Without specifying "raw", a call to static_replace would result in the MD5 hash being
                 ## being appended more than once, causing the import to fail in production environments.
                 require(['${staticfiles_storage.url(module_name + ".js") + "?raw" | n, js_escaped_string}'], function () {
-                    require(['${module_name | n, js_escaped_string}'], function (${class_name | n, js_escaped_string}) {
+                    require(['${module_name | n, js_escaped_string}'], function (${class_name | n, decode.utf8}) {
                         ${caller.body() | n, decode.utf8}
                     });
                 });
