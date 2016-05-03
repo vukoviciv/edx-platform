@@ -57,8 +57,8 @@ Blocks Resource
 
    * - :ref:`Get a list of the course blocks in a course`
      - GET
-     - /api/courses/v1/blocks/?course_id=<course_id>
+     - /api/courses/v1/blocks/{course_key}/
 
    * - :ref:`Get a list of the course blocks in a block tree`
      - GET
-     - /api/courses/v1/blocks/<root_block_usage_id>/?depth=all
+     - /api/courses/v1/blocks/<block_usage_id>
