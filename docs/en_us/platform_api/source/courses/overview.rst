@@ -35,12 +35,13 @@ Courses Resource
    * - Task
      - Method
      - Endpoint
-   * - :ref:`Get the details for a specified course`
-     - GET
-     - /api/courses/v1/courses/{course_key}/
    * - :ref:`Get the list of courses visible to a user`
      - GET
      - /api/courses/v1/courses/
+   * - :ref:`Get the details for a specified course`
+     - GET
+     - /api/courses/v1/courses/{course_key}/
+
 
 
 =================

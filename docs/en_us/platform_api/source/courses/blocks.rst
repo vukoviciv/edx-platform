@@ -14,11 +14,11 @@ following tasks.
 
 .. _Get a list of the course blocks in a course:
 
-*******************************************************
-Get a List of Course Blocks in a Specified Course
-*******************************************************
+****************************************
+Get a List of Course Blocks in a Course
+****************************************
 
-The endpoint to get a list of course blocks in a specified block tree
+The endpoint to get a list of course blocks in a course is
 ``/api/courses/v1/blocks/?course_id=<course_id>``.
 
 =====================
@@ -41,9 +41,6 @@ GET /api/courses/v1/blocks/?course_id=edX%2FDemoX%2FDemo_Course
 Parameters
 =====================
 
-This view redirects to /api/courses/v1/blocks/<root_usage_key>/ for the root
-block usage key of the course specified by course_id.
-
 This view accepts the following parameters.
 
 * block_counts: to return the aggregate number of blocks (including child
@@ -54,8 +51,8 @@ This view accepts the following parameters.
   Possible values are: ``sequential``, ``vertical``, ``html``, ``problem``,
   ``video``   and ``discussion``. Example: ``block_types_filter=problem,html``.
 
-* course_id: (string, required) The ID of the course whose block data you are
-  requesting. Example: ``course_id=edX%2FDemoX%2FDemo_Course``.
+* course_id: (string, required) The URL-encoded ID of the course whose block
+  data you are requesting. Example: ``course_id=edX%2FDemoX%2FDemo_Course``.
 
 * depth: (integer or ``all``) Specify how far down in the course blocks
   hierarchy to traverse down. A value of ``all`` specifies the entire
@@ -156,7 +153,7 @@ Return Values
 Example Response Showing a List of Course Blocks in a Specified Course
 ============================================================================
 
-::
+.. code-block:: json
 
  {
    "root": "i4x://edX/DemoX/course/Demo_Course",
@@ -178,11 +175,11 @@ Example Response Showing a List of Course Blocks in a Specified Course
 
 .. _Get a list of the course blocks in a block tree:
 
-*******************************************************
-Get a List of Course Blocks in a Specified Block Tree
-*******************************************************
+*********************************************
+Get a List of Course Blocks in a Block Tree
+*********************************************
 
-The endpoint to get a list of course blocks in a specified block tree
+The endpoint to get a list of course blocks in a specified block tree is
 ``/api/courses/v1/blocks/<usage_id>/``.
 
 =====================
@@ -314,7 +311,7 @@ Return Values
 Example Response Showing a List of Course Blocks in a Specified Block Tree
 ============================================================================
 
-::
+.. code-block:: json
 
  {
    "root": "i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7",
