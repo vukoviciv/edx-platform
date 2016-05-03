@@ -21,7 +21,7 @@ Courses API Resources and Endpoints
 ************************************
 
 The Courses API includes the :ref:`Courses<Courses API Courses Resource>` and
-:ref:`Blocks<Courses API Blocks Resource> resources, and supports the following
+:ref:`Blocks<Courses API Blocks Resource>` resources, and supports the following
 tasks, methods, and endpoints.
 
 =================
