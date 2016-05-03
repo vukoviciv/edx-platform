@@ -682,6 +682,12 @@
 
                         state.el.trigger('language_menu:change', [langCode]);
                         self.fetchCaption();
+                        
+                        // update the closed-captions lang attribute
+                        self.captionDisplayEl.attr('lang', langCode);
+                        
+                        // update the transcript lang attribute
+                        self.subtitlesMenuEl.attr('lang', langCode);
                     }
                 });
             },
@@ -1111,7 +1117,8 @@
 
                 this.captionDisplayEl
                     .show()
-                    .addClass('is-visible');
+                    .addClass('is-visible')
+                    .attr('lang', this.state.lang);
 
                 this.captionControlEl
                     .addClass('is-active')
