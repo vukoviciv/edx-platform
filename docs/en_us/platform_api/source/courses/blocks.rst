@@ -33,12 +33,9 @@ Example Request
 =====================
 
 GET /api/courses/v1/blocks/?course_id=<course_id>
-    &username=anjali
-    &depth=all
-    &requested_fields=graded,format,student_view_multi_device,lti_url
-    &block_counts=video
-    &student_view_data=video
-    &block_types_filter=problem,html
+
+GET /api/courses/v1/blocks/?course_id=edX%2FDemoX%2FDemo_Course
+&all_blocks=true&requested_fields=graded,format,student_view_multi_device
 
 =====================
 Parameters
@@ -51,33 +48,34 @@ This view accepts the following parameters.
 
 * block_counts: to return the aggregate number of blocks (including child
   blocks) of each type specified in the "block_counts" response value.
-  Example: block_counts=video,problem
+  Example: ``block_counts=video,problem``.
 
 * block_types_filter: Specify the types of blocks to be included in results.
   Possible values are: ``sequential``, ``vertical``, ``html``, ``problem``,
-  ``video``   and ``discussion``.
+  ``video``   and ``discussion``. Example: ``block_types_filter=problem,html``.
 
 * course_id: (string, required) The ID of the course whose block data you are
-  requesting.
+  requesting. Example: ``course_id=edX%2FDemoX%2FDemo_Course``.
 
 * depth: (integer or ``all``) Specify how far down in the course blocks
   hierarchy to traverse down. A value of ``all`` specifies the entire
-  hierarchy. The default value is 0.
+  hierarchy. The default value is 0. Example: ``depth=all``.
 
 * requested_fields: (list) Indicates fields to return for each block, in
   addition to id, type, and display_name, which are always returned. For the
   list of possible fields, see the fields listed under ``blocks`` in the
-  **Response Values** section below.
+  **Response Values** section below. Example:
+  ``requested_fields=graded,format,student_view_multi_device``.
 
 * return_type: (string) Indicates in what data type to return the block data.
   Supported values are ``dict`` and ``list``. The default value is ``dict``.
 
 * student_view_data: (list) Indicates for which block types the JSON data is
   returned in the "student_view_data" response value. Example:
-  student_view_data=video
+  ``student_view_data=video``.
 
 * username: (string) Required, unless ``all_blocks`` is specified. Example:
-  username=anjali
+  ``username=anjali``.
 
 
 =====================
@@ -161,17 +159,20 @@ Example Response Showing a List of Course Blocks in a Specified Course
 ::
 
  {
-    "root": "block-v1:MITx+0.111x+2T2015+type@course+block@course",
-    "blocks": {
-        "block-v1:MITx+0.111x+2T2015+type@course+block@course":
-                 {
-            "display_name": "Making Science and Engineering Pictures: A Practical Guide to Presenting Your Work",
-            "lms_web_url": "https://courses.edx.org/courses/course-v1:MITx+0.111x+2T2015/jump_to/block-v1:MITx+0.111x+2T2015+type@course+block@course",
-            "type": "course",
-            "id": "block-v1:MITx+0.111x+2T2015+type@course+block@course",
-            "student_view_url": "https://courses.edx.org/xblock/block-v1:MITx+0.111x+2T2015+type@course+block@course"
-                 }
-              }
+   "root": "i4x://edX/DemoX/course/Demo_Course",
+   "blocks": {
+      "i4x://edX/DemoX/course/Demo_Course": {
+        "display_name": "edX Demonstration Course",
+        "graded": false,
+        "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/
+         course/Demo_Course",
+        "student_view_multi_device": false,
+        "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/
+          jump_to/i4x://edX/DemoX/course/Demo_Course",
+        "type": "course",
+        "id": "i4x://edX/DemoX/course/Demo_Course"
+        }
+    }
  }
 
 
@@ -196,12 +197,10 @@ Example Request
 =====================
 
 GET /api/courses/v1/blocks/<usage_id>/?
-    username=anjali
-    &depth=all
-    &requested_fields=graded,format,student_view_multi_device,lti_url
-    &block_counts=video
-    &student_view_data=video
-    &block_types_filter=problem,html
+
+GET /api/courses/v1/blocks/i4x%3A%2F%2FedX%2FDemoX%2Fvertical
+%2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true
+
 
 =====================
 Parameters
@@ -209,35 +208,40 @@ Parameters
 
 This view accepts the following parameters.
 
+* all_blocks: (boolean) Provide a value of ``true`` to return all blocks.
+
 * block_counts: to return the aggregate number of blocks (including child
   blocks) of each type specified in the "block_counts" response value.
-  Example: block_counts=video,problem
+  Example: ``block_counts=video,problem``.
 
 * block_types_filter: Specify the types of blocks to be included in results.
   Possible values are: ``sequential``, ``vertical``, ``html``, ``problem``,
-  ``video``   and ``discussion``.
-
-* course_id: (string, required) The ID of the course whose block data you are
-  requesting.
+  ``video``   and ``discussion``. Example: ``block_types_filter=problem,html``.
 
 * depth: (integer or ``all``) Specify how far down in the course blocks
   hierarchy to traverse down. A value of ``all`` specifies the entire
-  hierarchy. The default value is 0.
+  hierarchy. The default value is 0. Example: ``depth=all``.
 
 * requested_fields: (list) Indicates fields to return for each block, in
   addition to id, type, and display_name, which are always returned. For the
   list of possible fields, see the fields listed under ``blocks`` in the
-  **Response Values** section below.
+  **Response Values** section below. Example:
+  ``requested_fields=graded,format,student_view_multi_device``.
 
 * return_type: (string) Indicates in what data type to return the block data.
   Supported values are ``dict`` and ``list``. The default value is ``dict``.
 
 * student_view_data: (list) Indicates for which block types the JSON data is
   returned in the "student_view_data" response value. Example:
-  student_view_data=video
+  ``student_view_data=video``.
+
+* usage_id: (string) The usage ID of the block. Example: ``i4x%3A%2F%2FedX
+  %2FDemoX%2Fvertical%2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true``
 
 * username: (string) Required, unless ``all_blocks`` is specified. Example:
-  username=anjali
+  ``username=anjali``.
+
+
 
 =====================
 Response Values
@@ -310,4 +314,37 @@ Return Values
 Example Response Showing a List of Course Blocks in a Specified Block Tree
 ============================================================================
 
+::
 
+ {
+   "root": "i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7",
+   "blocks": {
+      "i4x://edX/DemoX/discussion/e5eac7e1a5a24f5fa7ed77bb6d136591": {
+         "display_name": "",
+         "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/
+          jump_to/i4x://edX/DemoX/discussion/e5eac7e1a5a24f5fa7ed77bb6d136591",
+         "type": "discussion",
+         "id": "i4x://edX/DemoX/discussion/e5eac7e1a5a24f5fa7ed77bb6d136591",
+         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/discussion/
+          e5eac7e1a5a24f5fa7ed77bb6d136591"
+     },
+      "i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7": {
+         "display_name": "Pointing on a Picture",
+         "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/jump_to/
+          i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7",
+         "type": "vertical",
+         "id": "i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7",
+         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/vertical/
+          2152d4a4aadc4cb0af5256394a3d1fc7"
+     },
+      "i4x://edX/DemoX/problem/c554538a57664fac80783b99d9d6da7c": {
+         "display_name": "Pointing on a Picture",
+         "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/jump_to/
+          i4x://edX/DemoX/problem/c554538a57664fac80783b99d9d6da7c",
+         "type": "problem",
+         "id": "i4x://edX/DemoX/problem/c554538a57664fac80783b99d9d6da7c",
+         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/problem/
+          c554538a57664fac80783b99d9d6da7c"
+     }
+   }
+ }
