@@ -760,10 +760,14 @@
                         .text(gettext('Video transcript'));
 
                     self.subtitlesEl.find('.transcript-start')
-                        .text(gettext('Start of transcript. Skip to the end.'));
+                        .text(gettext('Start of transcript. Skip to the end.'))
+                        .attr('lang', 'en');
 
                     self.subtitlesEl.find('.transcript-end')
-                        .text(gettext('End of transcript. Skip to the start.'));
+                        .text(gettext('End of transcript. Skip to the start.'))
+                        .attr('lang', 'en');
+                        
+                    console.log(self.state);
 
                     self.container.find('.menu-container .language-menu')
                         .attr('aria-label', gettext('Language: Press the UP arrow key to enter the language menu then use UP and DOWN arrow keys to navigate language options. Press ENTER to change to the selected language.')); // jshint ignore:line
