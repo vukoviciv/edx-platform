@@ -189,8 +189,6 @@ GET /api/courses/v1/blocks/i4x%3A%2F%2FedX%2FDemoX%2Fvertical
 Query Parameters
 =====================
 
-This view accepts the following parameters.
-
 * all_blocks: (boolean) Provide a value of ``true`` to return all blocks.
 
 * block_counts: to return the aggregate number of blocks (including child
