@@ -359,6 +359,7 @@ class Pa11yCrawler(BokChoyTestSuite):
             '--pa11ycrawler-deny-url-matcher={dont_go_here} '
             '--pa11y-reporter="{reporter}" '
             '--depth-limit={depth} '
+            '--log-level=INFO '
         ).format(
             start_urls=' '.join(self.start_urls),
             allowed_domains='localhost',
