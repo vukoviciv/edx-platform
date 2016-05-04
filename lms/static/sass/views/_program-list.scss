@@ -1,4 +1,14 @@
-// +Imports
+
+.program-list-wrapper {
+  background: #ebb90d;
+}
+
+.sidebar {
+  background: #73bde7;
+}
+
+
+/*// +Imports
 // ====================
 @import '../base/grid-settings';
 @import 'neat/neat'; // lib - Neat
@@ -16,6 +26,7 @@ $pl-button-color: #0079bc;
   @include outer-container;
   @include span-columns(12);
 }
+
 .sidebar{
   @include outer-container;
   @include span-columns(12);
@@ -91,8 +102,8 @@ $pl-button-color: #0079bc;
     @include span-columns(3);
   }
 }
-
-// CASE: empty list of programs
+*/
+/*// CASE: empty list of programs
   .empty-programs-message {
     border: 3px solid $gray-l4;
     background: $gray-l6;
@@ -160,4 +171,4 @@ $pl-button-color: #0079bc;
         }
       }
     }
-  }
+  }*/
