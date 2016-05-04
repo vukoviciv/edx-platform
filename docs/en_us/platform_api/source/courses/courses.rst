@@ -12,24 +12,23 @@ following tasks.
    :depth: 1
 
 
-.. _Get the list of courses visible to a user:
+.. _Get a list of courses:
 
-*****************************************
-Get a List of Courses Visible To a User
-*****************************************
+**********************
+Get a List of Courses
+**********************
 
-The endpoint to get a list of courses that are visible to a specified user is
-``/api/courses/v1/courses/``.
+The endpoint to get a list of courses is ``/api/courses/v1/courses/``.
 
 =====================
 Use Case
 =====================
 
-Get a list of courses that are visible to a specified user.
-If the request is made by an anonymous user, a username is not required.
+Get a list of the courses that are visible to a specific user. If the request
+is made by an anonymous user, a username is not required.
 
 =====================
-Example Request
+Example Requests
 =====================
 
 GET /api/courses/v1/courses/?&username=<username>
@@ -37,7 +36,7 @@ GET /api/courses/v1/courses/?&username=<username>
 GET /api/courses/v1/courses/
 
 =====================
-Parameters
+Query Parameters
 =====================
 
 * username (optional) - The username of the user for whom the course data is
@@ -45,19 +44,16 @@ Parameters
   required.
 
 * org (optional) - A code for an organization; case-insensitive. Example:
-  "HarvardX". If ``org`` is specified, the list of courses is filtered such
-  that only those courses belonging to the specified organization are
-  returned.
+  "HarvardX". If ``org`` is specified, the list of courses only includes courses belonging to the specified organization.
 
-* mobile (optional) - If specified, the list of courses is filtered such that
-  only those courses that are designated as ``mobile_available`` are returned.
+* mobile (optional) - If specified, the list of courses only includes courses
+  that are designated as ``mobile_available``.
 
 =====================
 Response Values
 =====================
 
-The response for ``GET /api/courses/v1/courses/`` consists of the
-following fields as returned by `CourseListView`.
+The following fields are returned with a successful response.
 
 * blocks_url: Used to fetch the course blocks.
 
@@ -73,18 +69,19 @@ following fields as returned by `CourseListView`.
 * id: A unique identifier of the course; a serialized representation of the
   opaque key identifying the course.
 
-* media: An object that contains named media items, including
+* media: An object that contains named media items, including the following
+  objects.
 
-  * course_image: An image to show for the course
+  * course_image: An image to show for the course.
 
-    * uri: The location of the image
+    * uri: The location of the image.
 
-  * course_video: A video about the course
+  * course_video: A video about the course.
 
-    * uri: The location of the video
+    * uri: The location of the video.
 
-  * image: URLs for images in the course, including "raw", "small" or "large"
-    versions.
+  * image: URLs for images in the course, including ``raw``, ``small``, or
+    ``large`` versions.
 
 * name: The name of the course.
 
@@ -98,39 +95,23 @@ following fields as returned by `CourseListView`.
 
 * start: The date on which the course begins.
 
-* start_display: The readably formatted start date of the course.
+* start_display: The start date of the course, formatted for reading.
 
-* start_type: Indicates how `start_display` is set. Possible values are:
+* start_type: Indicates how ``start_display`` was set. Possible values are:
 
-  * "string": manually set
-  * "timestamp": generated form `start` timestamp
-  * "empty": the start date should not be shown
+  * "string": Manually set.
+  * "timestamp": Generated from the ``start`` timestamp.
+  * "empty": The start date is not shown.
 
-* pacing: The type of course pacing for this course. Possible values:
-  instructor, self
+* pacing: The type of pacing for this course. Possible values are
+  ``instructor`` and ``self``.
 
-* course_id: Course key. This field might be returned but is deprecated. You
-  should use ``id`` instead.
+* course_id: The course key. This field might be returned but is deprecated.
+  You should use ``id`` instead.
 
-* course_id: Course key. This field might be returned but is deprecated. You
-  should use ``id`` instead.
-
-================
-Return Values
-================
-
-* 200 on success with above fields.
-
-* 400 if an invalid parameter was sent, or if the username was not provided
-  for an authenticated request.
-
-* 403 if a user who does not have permission to masquerade as another user
-  specifies a username other than their own.
-
-* 404 if the course is not available or cannot be seen.
 
 ==============================================================
-Example Response Showing a List of Courses Visible to a User
+Example Response Showing The List of Courses Visible to a User
 ==============================================================
 
 .. code-block:: json
@@ -160,9 +141,9 @@ Example Response Showing a List of Courses Visible to a User
 
 .. _Get the details for a specified course:
 
-*****************************************
-Get Details for a Specified Course
-*****************************************
+*************************
+Get Details for a Course
+*************************
 
 The endpoint to get the details for a specified course is
 ``/api/courses/v1/courses/{course_key}/``.
@@ -171,33 +152,27 @@ The endpoint to get the details for a specified course is
 Use Case
 =====================
 
-Get the details for a course whose course key you specify.
+Get the details for a course that you specify using a course key.
 
 =====================
-Example Request
+Example Requests
 =====================
-
-GET /api/courses/v1/courses/{course key}
 
 GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course
 
 =====================
-Parameters
+Query Parameters
 =====================
 
 * username (optional) - The username of the user for whom the course data is
   being accessed. If the request is made by an anonymous user, username is not
   required.
 
-* course_key - The identifier for the course whose details you want to get.
-  For example, ``edX%2FDemoX.1%2F2014``.
-
 =====================
 Response Values
 =====================
 
-The response for ``GET /api/courses/v1/courses/{course_key}/`` consists of the
-following fields as returned by `CourseDetailView`.
+The following fields are returned with a successful response.
 
 * blocks_url: Used to fetch the course blocks.
 
@@ -210,20 +185,21 @@ following fields as returned by `CourseDetailView`.
 
 * enrollment_start: The date on which enrollment begins.
 
-* id: A unique identifier of the course; a serialized representation of the
-  opaque key identifying the course.
+* id: A unique identifier of the course; a serialized representation
+  of the opaque key identifying the course.
 
-* media: An object that contains named media items, including
+* media: An object that contains named media items, including the following
+  objects.
 
-  * course_image: An image to show for the course
+  * course_image: An image to show for the course.
 
-    * uri: The location of the image
+    * uri: The location of the image.
 
-  * course_video: A video about the course
+  * course_video: A video about the course.
 
-    * uri: The location of the video
+    * uri: The location of the video.
 
-  * image: URLs for images in the course, including "raw", "small" or "large"
+  * image: URLs for images in the course, including ``raw``, ``small``, or ``large``
     versions.
 
 * name: The name of the course.
@@ -238,34 +214,20 @@ following fields as returned by `CourseDetailView`.
 
 * start: The date on which the course begins.
 
-* start_display: The readably formatted start date of the course.
+* start_display: The start date of the course formatted for reading.
 
-* start_type: Indicates how `start_display` is set. Possible values are:
+* start_type: Indicates how ``start_display`` was set. Possible values are:
 
-  * "string": manually set
-  * "timestamp": generated form `start` timestamp
-  * "empty": the start date should not be shown
+  * "string": Manually set.
+  * "timestamp": Generated from the ``start`` timestamp.
+  * "empty": The start date is not shown.
 
-* pacing: The type of course pacing for this course. Possible values:
-  instructor, self
+* pacing: The type of pacing for this course. Possible values are
+  ``instructor`` and ``self``.
 
-* course_id: Course key. This field might be returned but is deprecated. You
-  should use ``id`` instead.
+* course_id: The course key. This field might be returned but is deprecated.
+  You should use ``id`` instead.
 
-
-================
-Return Values
-================
-
-* 200 on success with above fields.
-
-* 400 if an invalid parameter was sent, or if the username was not provided
-  for an authenticated request.
-
-* 403 if a user who does not have permission to masquerade as another user
-  specifies a username other than their own.
-
-* 404 if the course is not available or cannot be seen.
 
 =========================================================
 Example Response Showing Details of a Specified Course

@@ -35,10 +35,10 @@ Courses Resource
    * - Task
      - Method
      - Endpoint
-   * - :ref:`Get the list of courses visible to a user`
+   * - :ref:`Get a list of courses`
      - GET
      - /api/courses/v1/courses/
-   * - :ref:`Get the details for a specified course`
+   * - :ref:`Get the details for a course`
      - GET
      - /api/courses/v1/courses/{course_key}/
 
@@ -58,7 +58,7 @@ Blocks Resource
 
    * - :ref:`Get a list of the course blocks in a course`
      - GET
-     - /api/courses/v1/blocks/ with ``course_id`` parameter
+     - /api/courses/v1/blocks/ with required ``course_id`` parameter
 
    * - :ref:`Get a list of the course blocks in a block tree`
      - GET
