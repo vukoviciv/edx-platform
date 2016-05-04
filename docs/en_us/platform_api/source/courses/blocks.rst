@@ -201,9 +201,9 @@ This view accepts the following parameters.
   Possible values are: ``sequential``, ``vertical``, ``html``, ``problem``,
   ``video``   and ``discussion``. Example: ``block_types_filter=problem,html``.
 
-* depth: (integer or ``all``) Specify how far down in the course blocks
-  hierarchy to traverse down. A value of ``all`` specifies the entire
-  hierarchy. The default value is 0. Example: ``depth=all``.
+* depth: (integer or ``all``) Specify how far in the course blocks hierarchy
+  to traverse down. A value of ``all`` specifies the entire hierarchy. The
+  default value is ``0``. Example: ``depth=all``.
 
 * requested_fields: (list) Indicates fields to return for each block, in
   addition to id, type, and display_name, which are always returned. For the
