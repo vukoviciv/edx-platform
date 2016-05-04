@@ -35,7 +35,7 @@
             'underscore.string': 'common/js/vendor/underscore.string',
             'backbone': 'xmodule_js/common_static/common/js/vendor/backbone-min',
             'backbone.associations': 'xmodule_js/common_static/js/vendor/backbone-associations-min',
-            'backbone.paginator': 'xmodule_js/common_static/js/vendor/backbone.paginator.min',
+            'backbone.paginator': 'xmodule_js/common_static/common/js/vendor/backbone.paginator',
             'backbone-super': 'js/vendor/backbone-super',
             'URI': 'xmodule_js/common_static/js/vendor/URI.min',
             'tinymce': 'xmodule_js/common_static/js/vendor/tinymce/js/tinymce/tinymce.full.min',
@@ -72,6 +72,7 @@
             'modernizr': 'xmodule_js/common_static/edx-pattern-library/js/modernizr-custom',
             'afontgarde': 'xmodule_js/common_static/edx-pattern-library/js/afontgarde',
             'edxicons': 'xmodule_js/common_static/edx-pattern-library/js/edx-icons',
+            'paging-collection': 'edx-ui-toolkit/js/pagination/paging-collection',
 
             // Manually specify LMS files that are not converted to RequireJS
             'history': 'js/vendor/history',
@@ -203,6 +204,9 @@
             },
             "backbone-super": {
                 deps: ["backbone"]
+            },
+            'paging-collection': {
+                deps: ['jquery', 'underscore', 'backbone.paginator']
             },
             'youtube': {
                 exports: 'YT'

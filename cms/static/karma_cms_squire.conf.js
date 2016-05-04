@@ -37,7 +37,7 @@ var libraryFiles = [
     {pattern: 'xmodule_js/common_static/common/js/vendor/underscore.string.js', included: false},
     {pattern: 'xmodule_js/common_static/common/js/vendor/backbone-min.js', included: false},
     {pattern: 'xmodule_js/common_static/js/vendor/backbone-associations-min.js', included: false},
-    {pattern: 'xmodule_js/common_static/js/vendor/backbone.paginator.min.js', included: false},
+    {pattern: 'xmodule_js/common_static/common/js/vendor/backbone.paginator.js', included: false},
     {pattern: 'xmodule_js/common_static/js/vendor/timepicker/jquery.timepicker.js', included: false},
     {pattern: 'xmodule_js/common_static/js/vendor/jquery.leanModal.js', included: false},
     {pattern: 'xmodule_js/common_static/js/vendor/jquery.form.js', included: false},
@@ -68,7 +68,8 @@ var libraryFiles = [
         pattern: 'xmodule_js/common_static/js/vendor/jQuery-File-Upload/js/jquery.fileupload-validate.js',
         included: false
     },
-    {pattern: 'xmodule_js/common_static/js/vendor/requirejs/text.js', included: false}
+    {pattern: 'xmodule_js/common_static/js/vendor/requirejs/text.js', included: false},
+    {pattern: 'edx-ui-toolkit/js/**/*.js', included: false}
 ];
 
 // Paths to source JavaScript files
