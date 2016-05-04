@@ -166,7 +166,7 @@ Get a List of Course Blocks in a Block Tree
 *********************************************
 
 The endpoint to get a list of course blocks in a specified block tree is
-``/api/courses/v1/blocks/<usage_id>/``.
+``/api/courses/v1/blocks/{usage_id}/``.
 
 =====================
 Use Case
@@ -179,7 +179,7 @@ on the requesting user's access level.
 Example Requests
 =====================
 
-GET /api/courses/v1/blocks/<usage_id>/
+GET /api/courses/v1/blocks/{usage_id}/
 
 GET /api/courses/v1/blocks/i4x%3A%2F%2FedX%2FDemoX%2Fvertical
 %2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true
