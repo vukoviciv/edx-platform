@@ -217,7 +217,7 @@ Query Parameters
   ``student_view_data=video``.
 
 * usage_id: (string) The usage ID of the block. Example: ``i4x%3A%2F%2FedX
-  %2FDemoX%2Fvertical%2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true``
+  %2FDemoX%2Fvertical%2F2152d4a4aadc4cb0af5256394a3d1fc7``
 
 * username: (string) Required, unless ``all_blocks`` is specified. Example:
   ``username=anjali``.
