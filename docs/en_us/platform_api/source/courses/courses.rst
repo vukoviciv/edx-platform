@@ -44,10 +44,12 @@ Query Parameters
   required.
 
 * org (optional) - A code for an organization; case-insensitive. Example:
-  "HarvardX". If ``org`` is specified, the list of courses only includes courses belonging to the specified organization.
+  "HarvardX". If ``org`` is specified, the list of courses only includes
+  courses belonging to the specified organization.
 
 * mobile (optional) - If specified, the list of courses only includes courses
   that are designated as ``mobile_available``.
+
 
 =====================
 Response Values
@@ -139,13 +141,13 @@ Example Response Showing The List of Courses Visible to a User
     }
 
 
-.. _Get the details for a specified course:
+.. _Get the details for a course:
 
 *************************
 Get Details for a Course
 *************************
 
-The endpoint to get the details for a specified course is
+The endpoint to get the details for a course is
 ``/api/courses/v1/courses/{course_key}/``.
 
 =====================
@@ -199,8 +201,8 @@ The following fields are returned with a successful response.
 
     * uri: The location of the video.
 
-  * image: URLs for images in the course, including ``raw``, ``small``, or ``large``
-    versions.
+  * image: URLs for images in the course, including ``raw``, ``small``, or
+    ``large`` versions.
 
 * name: The name of the course.
 
@@ -236,7 +238,8 @@ Example Response Showing Details of a Specified Course
 .. code-block:: json
 
  {
-   "blocks_url": "https://courses.edx.org/api/courses/v1/blocks/?course_id=edX%2FDemoX%2FDemo_Course",
+   "blocks_url": "https://courses.edx.org/api/courses/v1/blocks/?course_id=
+    edX%2FDemoX%2FDemo_Course",
    "effort": null,
    "end": null,
    "enrollment_start": null,
@@ -247,12 +250,15 @@ Example Response Showing Details of a Specified Course
           "uri": "/c4x/edX/DemoX/asset/images_course_image.jpg"
                         },
         "course_video": {
-            "uri": null
+          "uri": null
                         },
       "image": {
-            "raw": "https://d37djvu3ytnwxt.cloudfront.net/c4x/edX/DemoX/asset/images_course_image.jpg",
-            "small": "https://d37djvu3ytnwxt.cloudfront.net/c4x/edX/DemoX/thumbnail/images_course_image-375x200.jpg",
-            "large": "https://d37djvu3ytnwxt.cloudfront.net/c4x/edX/DemoX/thumbnail/images_course_image-750x400.jpg"
+          "raw": "https://d37djvu3ytnwxt.cloudfront.net/c4x/edX/DemoX/asset/
+           images_course_image.jpg",
+          "small": "https://d37djvu3ytnwxt.cloudfront.net/c4x/edX/DemoX/thumbnail/
+           images_course_image-375x200. jpg",
+          "large": "https://d37djvu3ytnwxt.cloudfront.net/c4x/edX/DemoX/thumbnail/
+           images_course_image-750x400.jpg"
                }
             },
     "name": "edX Demonstration Course",

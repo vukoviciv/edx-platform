@@ -300,26 +300,26 @@ Example Response Showing a List of Course Blocks in a Block Tree
           jump_to/i4x://edX/DemoX/discussion/e5eac7e1a5a24f5fa7ed77bb6d136591",
          "type": "discussion",
          "id": "i4x://edX/DemoX/discussion/e5eac7e1a5a24f5fa7ed77bb6d136591",
-         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/discussion/
-          e5eac7e1a5a24f5fa7ed77bb6d136591"
+         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/
+          discussion/e5eac7e1a5a24f5fa7ed77bb6d136591"
      },
       "i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7": {
          "display_name": "Pointing on a Picture",
-         "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/jump_to/
-          i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7",
+         "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/
+          jump_to/i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7",
          "type": "vertical",
          "id": "i4x://edX/DemoX/vertical/2152d4a4aadc4cb0af5256394a3d1fc7",
-         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/vertical/
-          2152d4a4aadc4cb0af5256394a3d1fc7"
+         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/
+          vertical/2152d4a4aadc4cb0af5256394a3d1fc7"
      },
       "i4x://edX/DemoX/problem/c554538a57664fac80783b99d9d6da7c": {
          "display_name": "Pointing on a Picture",
-         "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/jump_to/
-          i4x://edX/DemoX/problem/c554538a57664fac80783b99d9d6da7c",
+         "lms_web_url": "https://courses.edx.org/courses/edX/DemoX/Demo_Course/
+          jump_to/i4x://edX/DemoX/problem/c554538a57664fac80783b99d9d6da7c",
          "type": "problem",
          "id": "i4x://edX/DemoX/problem/c554538a57664fac80783b99d9d6da7c",
-         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/problem/
-          c554538a57664fac80783b99d9d6da7c"
+         "student_view_url": "https://courses.edx.org/xblock/i4x://edX/DemoX/
+          problem/c554538a57664fac80783b99d9d6da7c"
      }
    }
  }
