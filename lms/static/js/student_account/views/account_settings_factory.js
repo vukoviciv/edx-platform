@@ -22,7 +22,7 @@
 
             var sectionsData = [
                  {
-                    title: gettext('Basic Account Information (required)'),
+                    title: gettext('Basic Account Information'),
                     fields: [
                         {
                             view: new FieldViews.ReadonlyFieldView({

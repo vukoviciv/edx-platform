@@ -1,13 +1,21 @@
 <main id="main" aria-label="Content" tabindex="-1">
 <div class="account-settings-container">
     <div class="wrapper-header">
-        <h2 class="header-title"><%- gettext("Account Settings") %></h2>
-        <small class="account-settings-header-subtitle"><%- gettext("These settings include basic information about your account. You can also specify additional information and see your linked social accounts on this page.") %></small>
+    <h3 class="header-title"><%- gettext("Account Settings") %></h3>
+        <ul class="left list-inline account-nav">
+            <li class="account-nav-item">
+                <a class="active account-nav-link" href="#">About</a>
+            </li>
+            <li class="account-nav-item">
+                <a class="account-nav-link" href="#">Connected Accounts</a>
+            </li>
+        </ul>
     </div>
 
     <div class="account-settings-sections">
         <% _.each(sections, function(section) { %>
             <div class="section">
+                <small class="account-settings-header-subtitle"><%- gettext("These settings include basic information about your account. You can also specify additional information and see your linked social accounts on this page.") %></small>
                 <h3 class="section-header"><%- gettext(section.title) %></h3>
                 <div class="account-settings-section-body">
                     <div class="ui-loading-indicator">
