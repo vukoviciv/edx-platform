@@ -229,8 +229,9 @@ Example:
 Query Parameters
 =====================
 
-Query parameters for this endpoint are the same as for :ref:`Blocks Query
-Parameters`, with the addition of ``usage_id``.
+:ref:`Blocks Query Parameters<Query parameters>` for this endpoint are the
+same as those for :ref:`Get a list of the course blocks in a course`, with the
+addition of ``usage_id``.
 
 * usage_id: (string) The URL-encoded ID of the block whose data you are
   requesting. Example:
@@ -241,8 +242,8 @@ Parameters`, with the addition of ``usage_id``.
 Response Values
 =====================
 
-Response values for this endpoint are the same as for :ref:`Blocks Response
-Values`.
+:ref:`Blocks Response Values<Response values> for this endpoint are the same
+as those for :ref:`Get a list of the course blocks in a course`.
 
 
 ================================================================
