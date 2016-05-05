@@ -3,6 +3,9 @@ Django admin page for bulk email models
 """
 from django.contrib import admin
 
+from config_models.models import ConfigurationModel
+from config_models.admin import ConfigurationModelAdmin
+
 from bulk_email.models import CourseEmail, Optout, CourseEmailTemplate, CourseAuthorization
 from bulk_email.forms import CourseEmailTemplateForm, CourseAuthorizationAdminForm
 
@@ -76,7 +79,12 @@ To enable email for the course, check the "Email enabled" box, then click "Save"
         }),
     )
 
+class BulkEmailFlag(ConfigurationModel):
+    """Enables site-wide feature switch for bulk_email"""
+    pass # ConfigurationModel defines all the fields we need; this is just a concrete child class
+
 admin.site.register(CourseEmail, CourseEmailAdmin)
 admin.site.register(Optout, OptoutAdmin)
 admin.site.register(CourseEmailTemplate, CourseEmailTemplateAdmin)
 admin.site.register(CourseAuthorization, CourseAuthorizationAdmin)
+admin.site.register(BulkEmailFlag, ConfigurationModelAdmin)
