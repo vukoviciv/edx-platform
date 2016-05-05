@@ -33,12 +33,12 @@ membership and individual allowances (such as due date extensions), if any.
 Request Format
 =====================
 
-``GET /api/courses/v1/blocks/?course_id=<course_id>``
+GET /api/courses/v1/blocks/?course_id=<course_id>
 
 Example:
 
-``GET /api/courses/v1/blocks/?course_id=edX%2FDemoX%2FDemo_Course
-&all_blocks=true&requested_fields=graded,format,student_view_multi_device``
+GET /api/courses/v1/blocks/?course_id=edX%2FDemoX%2FDemo_Course
+&all_blocks=true&requested_fields=graded,format,student_view_multi_device
 
 
 .. _Blocks Query Parameters:
@@ -166,9 +166,10 @@ Example Response Showing a List of Course Blocks in a Specified Course
 ============================================================================
 
 The following example response is returned from this request:
-``GET /api/courses/v1/blocks/?course_id=edX/DemoX/Demo_Course&all_blocks=true
+
+GET /api/courses/v1/blocks/?course_id=edX/DemoX/Demo_Course&all_blocks=true
 &block_counts=video,html,problem&requested_fields=graded,format,student_view_data,
-student_view_url,student_view_multi_device&student_view_data=video,html,problem``
+student_view_url,student_view_multi_device&student_view_data=video,html,problem
 
 
 .. code-block:: json
@@ -217,12 +218,12 @@ membership and individual allowances (such as due date extensions), if any.
 Request Format
 =====================
 
-``GET /api/courses/v1/blocks/{usage_id}/``
+GET /api/courses/v1/blocks/{usage_id}/
 
 Example:
 
-``GET /api/courses/v1/blocks/i4x%3A%2F%2FedX%2FDemoX%2Fvertical
-%2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true``
+GET /api/courses/v1/blocks/i4x%3A%2F%2FedX%2FDemoX%2Fvertical
+%2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true
 
 
 =====================
@@ -251,8 +252,9 @@ Example Response Showing a List of Course Blocks in a Block Tree
 ================================================================
 
 The following example response is returned from this request:
-``GET /api/courses/v1/blocks/i4x%3A%2F%2FedX%2FDemoX%2Fvertical
-%2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true``
+
+GET /api/courses/v1/blocks/i4x%3A%2F%2FedX%2FDemoX%2Fvertical
+%2F2152d4a4aadc4cb0af5256394a3d1fc7?all_blocks=true
 
 
 .. code-block:: json

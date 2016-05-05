@@ -32,11 +32,11 @@ permissions can specify other users' usernames.
 Request Format
 =====================
 
-``GET /api/courses/v1/courses/``
+GET /api/courses/v1/courses/
 
 Example:
 
-``GET /api/courses/v1/courses/?username=anjali``
+GET /api/courses/v1/courses/?username=anjali
 
 
 .. _Courses Query Parameters:
@@ -167,10 +167,10 @@ Get the details for a course that you specify using a course key.
 Request Format
 =====================
 
-``GET /api/courses/v1/courses/{course_key}``
+GET /api/courses/v1/courses/{course_key}
 
 Example:
-``GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course``
+GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course
 
 =====================
 Query Parameters
@@ -196,7 +196,8 @@ Example Response Showing Details of a Specified Course
 
 
 The following example response is returned from this request:
-``GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course``
+
+GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course
 
 
 .. code-block:: json
