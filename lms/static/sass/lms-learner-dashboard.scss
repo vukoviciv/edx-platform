@@ -7,7 +7,6 @@
 
 
 // Load the LTR version of lms main
-$pattern-library-path: '../edx-pattern-library' !default;
 @import 'lms-main-v2';
 
 // Load the shared build

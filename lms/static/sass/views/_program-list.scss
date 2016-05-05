@@ -1,109 +1,53 @@
-
 .program-list-wrapper {
-  background: #ebb90d;
+  padding: $baseline + px;
+}
+
+.program-cards-container {
+  @include span(12);
+
+  @include susy-media($bp-screen-md) {
+    @include span(8);
+  }
 }
 
 .sidebar {
-  background: #73bde7;
-}
-
-
-/*// +Imports
-// ====================
-@import '../base/grid-settings';
-@import 'neat/neat'; // lib - Neat
-
-//Patern Library button colors
-$pl-button-border-color: #065683;
-$pl-button-color: #0079bc;
-
-.program-list-wrapper{
-  @include outer-container;
-  padding: $baseline $baseline;
-}
-
-.program-cards-container{
-  @include outer-container;
-  @include span-columns(12);
-}
-
-.sidebar{
-  @include outer-container;
-  @include span-columns(12);
+  @include span(12);
   @include float(right);
-  margin-bottom: $baseline;
-  .certificate-container{
-    @include xseries-certificate-container();
+  margin-bottom: $baseline + px;
+
+  @include susy-media($bp-screen-md) {
+    @include span(4);
   }
-  .program-advertise{
-    padding: $baseline;
+
+  .program-advertise {
+    padding: $baseline + px;
     background-color: $body-bg;
     box-sizing: border-box;
     border: 1px solid $border-color-l3;
     clear: both;
-    .advertise-message{
-      font-size: em(12);
-      color: $gray-d4;
-      margin-bottom: $baseline;
-    }
-    .ad-link{
-      text-align:center;
-      a{
-        padding: $baseline * 0.5; 
-        border: 1px solid $pl-button-border-color;
-        color: $pl-button-color;
-        font-size: em(16);
-        text-decoration: none;
-        display: block;
-        line-height: 1.2;
-        &:hover,
-        &:focus,
-        &:active{
-          color: $white;
-          background-color: $pl-button-color;
-        }
-        span{
-          @include margin-left($baseline*0.25);
-        }
+
+    .advertise-message {
+      font-size: font-size(x-small);
+      color: palette(grayscale, black);
+      margin-bottom: $baseline + px;
+
+      .btn-neutral {
+        width: 100%;
+        text-align: center;
       }
     }
   }
 }
 
 
-
-@include media($bp-medium) {
-  .program-cards-container{
-    @include span-columns(8);
-  }
-  .sidebar{
-    @include span-columns(8);
+/*
+.sidebar{
+  .certificate-container{
+    @include xseries-certificate-container();
   }
 }
 
-
-
-@include media($bp-large) {
-  .program-cards-container{
-    @include span-columns(9);
-  }
-  .sidebar{
-    @include omega(n);
-    @include span-columns(3);
-  }
-}
-
-@include media($bp-huge) {
-  .program-cards-container{
-    @include span-columns(9);
-  }
-  .sidebar{
-    @include omega(n);
-    @include span-columns(3);
-  }
-}
-*/
-/*// CASE: empty list of programs
+// CASE: empty list of programs
   .empty-programs-message {
     border: 3px solid $gray-l4;
     background: $gray-l6;
