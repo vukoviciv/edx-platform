@@ -51,14 +51,17 @@ class @Calculator
     $calcWrapper = $('#calculator_wrapper')
     text = gettext('Open Calculator')
     isExpanded = false
+    icon = 'fa-calculator'
 
     $('div.calc-main').toggleClass 'open'
     if $calc.hasClass('closed')
+      icon = 'fa-calculator'
       $calcWrapper
         .find('input, a')
         .attr 'tabindex', -1
     else
       text = gettext('Close Calculator')
+      icon = 'fa-close'
       isExpanded = true
 
       $calcWrapper
@@ -74,6 +77,12 @@ class @Calculator
         'title': text
         'aria-expanded': isExpanded
       .find('.utility-control-label').text text
+      
+    $calc
+      .find('.icon')
+      .removeClass('fa-calculator')
+      .removeClass('fa-close')
+      .addClass(icon)
 
     $calc.toggleClass 'closed'
 
