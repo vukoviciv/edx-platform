@@ -24,49 +24,57 @@ The endpoint to get a list of courses is ``/api/courses/v1/courses/``.
 Use Case
 =====================
 
-Get a list of the courses that are visible to a specific user. If the request
-is made by an anonymous user, a username is not required.
+Get a list of the courses that are visible to a specific user. If a username
+is not supplied, an anonymous user is assumed. Users with course staff
+permissions can specify other users' usernames.
 
 =====================
-Example Requests
+Request Format
 =====================
 
-GET /api/courses/v1/courses/?&username=<username>
+``GET /api/courses/v1/courses/``
 
-GET /api/courses/v1/courses/
+Example:
+
+``GET /api/courses/v1/courses/?username=anjali``
+
+
+.. _Courses Query Parameters:
 
 =====================
 Query Parameters
 =====================
 
 * username (optional) - The username of the user for whom the course data is
-  being accessed. If the request is made by an anonymous user, username is not
-  required.
+  being accessed. If the request is made for an anonymous user, username is
+  not required. Only users with course staff permissions can specify other
+  users' usernames.
 
 * org (optional) - A code for an organization; case-insensitive. Example:
-  "HarvardX". If ``org`` is specified, the list of courses only includes
-  courses belonging to the specified organization.
+  "HarvardX". If ``org`` is specified, the list of courses includes only
+  courses that belong to the specified organization.
 
-* mobile (optional) - If specified, the list of courses only includes courses
+* mobile (optional) - If specified, the list of courses includes only courses
   that are designated as ``mobile_available``.
 
+
+.. _Courses Response Values:
 
 =====================
 Response Values
 =====================
 
 The following fields are returned with a successful response.
-
-* blocks_url: Used to fetch the course blocks.
+All date/time fields are in ISO 8601 notation.
 
 * effort: A textual description of the weekly hours of effort expected in the
   course.
 
-* end: The date on which the course ends.
+* end: The date and time that the course ends.
 
-* enrollment_end: The date on which enrollment ends.
+* enrollment_end: The date and time that enrollment ends.
 
-* enrollment_start: The date on which enrollment begins.
+* enrollment_start: The date and time that enrollment begins.
 
 * id: A unique identifier of the course; a serialized representation of the
   opaque key identifying the course.
@@ -95,15 +103,15 @@ The following fields are returned with a successful response.
 
 * short_description: A textual description of the course.
 
-* start: The date on which the course begins.
+* start: The date and time that the course begins.
 
 * start_display: The start date of the course, formatted for reading.
 
 * start_type: Indicates how ``start_display`` was set. Possible values are:
 
-  * "string": Manually set.
+  * "string": Manually set by the course author.
   * "timestamp": Generated from the ``start`` timestamp.
-  * "empty": The start date is not shown.
+  * "empty": No start date is specified.
 
 * pacing: The type of pacing for this course. Possible values are
   ``instructor`` and ``self``.
@@ -120,7 +128,6 @@ Example Response Showing The List of Courses Visible to a User
 
     {
 
-     "blocks_url":"/api/courses/v1/blocks/?course_id=edX%2Fexample%2F2012_Fall",
      "media": {
         "course_image": {
         "uri": "/c4x/edX/example/asset/just_a_test.jpg",
@@ -131,7 +138,7 @@ Example Response Showing The List of Courses Visible to a User
       "end": "2015-09-19T18:00:00Z",
       "enrollment_end": "2015-07-15T00:00:00Z",
       "enrollment_start": "2015-06-15T00:00:00Z",
-      "course_id": "edX/example/2012_Fall",
+      "id": "edX/example/2012_Fall",
       "name": "Example Course",
       "number": "example",
       "org": "edX",
@@ -157,14 +164,19 @@ Use Case
 Get the details for a course that you specify using a course key.
 
 =====================
-Example Requests
+Request Format
 =====================
 
-GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course
+``GET /api/courses/v1/courses/{course_key}``
+
+Example:
+``GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course``
 
 =====================
 Query Parameters
 =====================
+
+.. delete?
 
 * username (optional) - The username of the user for whom the course data is
   being accessed. If the request is made by an anonymous user, username is not
@@ -174,66 +186,18 @@ Query Parameters
 Response Values
 =====================
 
-The following fields are returned with a successful response.
-
-* blocks_url: Used to fetch the course blocks.
-
-* effort: A textual description of the weekly hours of effort expected in the
-  course.
-
-* end: The date on which the course ends.
-
-* enrollment_end: The date on which enrollment ends.
-
-* enrollment_start: The date on which enrollment begins.
-
-* id: A unique identifier of the course; a serialized representation
-  of the opaque key identifying the course.
-
-* media: An object that contains named media items, including the following
-  objects.
-
-  * course_image: An image to show for the course.
-
-    * uri: The location of the image.
-
-  * course_video: A video about the course.
-
-    * uri: The location of the video.
-
-  * image: URLs for images in the course, including ``raw``, ``small``, or
-    ``large`` versions.
-
-* name: The name of the course.
-
-* number: The catalog number of the course.
-
-* org: The name of the organization that owns the course.
-
-* overview: An HTML textual description of the course.
-
-* short_description: A textual description of the course.
-
-* start: The date on which the course begins.
-
-* start_display: The start date of the course formatted for reading.
-
-* start_type: Indicates how ``start_display`` was set. Possible values are:
-
-  * "string": Manually set.
-  * "timestamp": Generated from the ``start`` timestamp.
-  * "empty": The start date is not shown.
-
-* pacing: The type of pacing for this course. Possible values are
-  ``instructor`` and ``self``.
-
-* course_id: The course key. This field might be returned but is deprecated.
-  You should use ``id`` instead.
+Response values for this endpoint are the same as for :ref:`Courses Response
+Values`.
 
 
 =========================================================
 Example Response Showing Details of a Specified Course
 =========================================================
+
+
+The following example response is returned from this request:
+``GET /api/courses/v1/courses/edX%2FDemoX%2FDemo_Course``
+
 
 .. code-block:: json
 
