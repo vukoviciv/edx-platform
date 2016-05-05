@@ -6,7 +6,7 @@
   @include span(12);
 
   @include susy-media($bp-screen-md) {
-    @include span(8);
+    @include span(9);
   }
 }
 
@@ -16,7 +16,7 @@
   margin-bottom: $baseline + px;
 
   @include susy-media($bp-screen-md) {
-    @include span(4);
+    @include span(3);
   }
 
   .program-advertise {
@@ -26,93 +26,78 @@
     border: 1px solid $border-color-l3;
     clear: both;
 
+    .btn-neutral {
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+
+    }
+
     .advertise-message {
       font-size: font-size(x-small);
       color: palette(grayscale, black);
       margin-bottom: $baseline + px;
-
-      .btn-neutral {
-        width: 100%;
-        text-align: center;
-      }
     }
   }
-}
 
-
-/*
-.sidebar{
-  .certificate-container{
-    @include xseries-certificate-container();
-  }
-}
-
-// CASE: empty list of programs
-  .empty-programs-message {
-    border: 3px solid $gray-l4;
+  /*.certificate-container {
+    border: 1px solid $gray-l3;
+    box-sizing: border-box;
+    padding: $baseline + px;
     background: $gray-l6;
-    padding: ($baseline*2) 0;
-    text-align: center;
+    margin-top: $baseline + px;
 
-    .text {
-      @include font-size(24);
-      margin: {
-        top: 0;
-        bottom: $baseline;
-      }
-      text-shadow: 0 1px rgba(255,255,255, 0.6);
-      text-transform: none;
-      font-family: $sans-serif;
-      letter-spacing: initial;
-      color: $black;
+    .title {
+      @extend %t-title6;
+      @extend %t-weight3;
+      margin-bottom:$baseline;
+      color: $gray;
     }
 
-    a {
-      @include box-sizing(border-box);
-      background-color: $blue;
-      border: 1px solid $blue;
-      box-shadow: 0 1px 8px 0 $shadow-l1;
-      color: $white;
-      font-family: $sans-serif;
-      display: inline-block;
-      letter-spacing: 1px;
-      margin-top: ($baseline/4);
-      margin-left: ($baseline/4);
-      padding: 15px 20px;
-
-      &:hover, &:focus {
-        background: $blue-l2;
-        text-decoration: none;
-      }
-    }
-
-    .find-xseries-programs {
-      @extend %btn-pl-black-base;
-      .action-xseries-icon {
-        @include float(left);
-        @include margin-right($baseline*0.4);
-
-        display: inline;
-        background: url('#{$static-path}/images/icon-sm-xseries-white.png') no-repeat;
-        background-color: transparent;
-
-        width: ($baseline*1.1);
-        height: ($baseline*1.1);
-      }
-      &:hover,
-      &:focus {
-
-        .action-xseries-icon {
-          @include float(left);
-          @include margin-right($baseline*0.4);
-
-          display: inline;
-          background: url('#{$static-path}/images/icon-sm-xseries-black.png') no-repeat;
-          background-color: transparent;
-
-          width: ($baseline*1.1);
-          height: ($baseline*1.1);
-        }
-      }
+    .certificate-box {
+      padding-top: $baseline + px;
+      display: block;
     }
   }*/
+}
+
+.empty-programs-message {
+  border: 3px solid $gray-l4;
+  background: $gray-l6;
+  padding: ($baseline*2) + px 0;
+  text-align: center;
+  margin-bottom: 20px;
+
+  .hd-3 {
+    color: $black;
+    margin-bottom: $baseline + px;
+  }
+
+  .find-xseries-programs {
+    background: $black;
+    border-color: $black;
+    color: $white;
+
+    .action-xseries-icon {
+      @include float(left);
+      @include margin-right($baseline*0.4 + px);
+
+      display: inline;
+      background: url('#{$static-path}/images/icon-sm-xseries-white.png') no-repeat;
+      background-color: transparent;
+      width: ($baseline*1.1) + px;
+      height: ($baseline*1.1) + px;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+      background: $white;
+      color: $black;
+
+      .action-xseries-icon {
+        background: url('#{$static-path}/images/icon-sm-xseries-black.png') no-repeat;
+      }
+    }
+  }
+}
