@@ -1,6 +1,8 @@
 """
 Bok choy acceptance tests for conditionals in the LMS
 """
+from flaky import flaky
+
 from capa.tests.response_xml_factory import StringResponseXMLFactory
 from ..helpers import UniqueCourseTest
 from ...fixtures.course import CourseFixture, XBlockFixtureDesc
@@ -97,12 +99,14 @@ class ConditionalTest(UniqueCourseTest):
         course_fixture.create_xblock(vertical.locator, conditional)
         course_fixture.create_xblock(conditional.locator, result_block)
 
+    @flaky(max_runs=30, min_passes=30)
     def test_conditional_hides_content(self):
         self.install_course_fixture()
         self.courseware_page.visit()
         conditional_page = ConditionalPage(self.browser)
         self.assertFalse(conditional_page.is_content_visible())
 
+    @flaky(max_runs=30, min_passes=30)
     def test_conditional_displays_content(self):
         self.install_course_fixture()
         self.courseware_page.visit()
@@ -116,6 +120,7 @@ class ConditionalTest(UniqueCourseTest):
         conditional_page = ConditionalPage(self.browser)
         self.assertTrue(conditional_page.is_content_visible())
 
+    @flaky(max_runs=30, min_passes=30)
     def test_conditional_handles_polls(self):
         self.install_course_fixture(block_type='poll')
         self.courseware_page.visit()
