@@ -186,7 +186,7 @@ Query Parameters
 Response Values
 =====================
 
-:ref:`Courses Response Values<Response values> for this endpoint are the same
+:ref:`Courses Response Values<Response values>` for this endpoint are the same
 as those for :ref:`Get a list of courses`.
 
 
