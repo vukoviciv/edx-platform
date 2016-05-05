@@ -229,7 +229,7 @@ Example:
 Query Parameters
 =====================
 
-:ref:`Blocks Query Parameters<Query parameters>` for this endpoint are the
+:ref:`Query parameters<Blocks Query Parameters>` for this endpoint are the
 same as those for :ref:`Get a list of the course blocks in a course`, with the
 addition of ``usage_id``.
 
@@ -242,7 +242,7 @@ addition of ``usage_id``.
 Response Values
 =====================
 
-:ref:`Blocks Response Values<Response values> for this endpoint are the same
+:ref:`Response values<Blocks Response Values>` for this endpoint are the same
 as those for :ref:`Get a list of the course blocks in a course`.
 
 
