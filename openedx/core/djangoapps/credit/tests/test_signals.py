@@ -74,15 +74,16 @@ class TestMinGradedRequirementStatus(ModuleStoreTestCase):
 
     @ddt.data(
         (0.6, VALID_DUE_DATE),
-        (0.52, VALID_DUE_DATE),
-        (0.70, EXPIRED_DUE_DATE),
+        (0.52, None),
     )
     @ddt.unpack
     def test_min_grade_requirement_with_valid_grade(self, grade, due_date):
-        """Test with valid grades. Deadline date does not effect in case
-        of valid grade.
-        """
+        """Test with valid grades submitted before deadline"""
         self.assert_requirement_status(grade, due_date, 'satisfied')
+
+    def test_min_grade_requirement_with_valid_grade_and_expired_deadline(self):
+        """ Verify the status is set to failure if a passing grade is received past the submission deadline. """
+        self.assert_requirement_status(0.70, self.EXPIRED_DUE_DATE, 'failed')
 
     @ddt.data(
         (0.50, None),
