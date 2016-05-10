@@ -114,9 +114,10 @@ def _footer_copyright():
     return _(
         # Translators: 'EdX', 'edX', and 'Open edX' are trademarks of 'edX Inc.'.
         # Please do not translate any of these trademarks and company names.
-        u"\u00A9 {org_name}.  All rights reserved except where noted.  "
-        u"EdX, Open edX and the edX and Open EdX logos are registered trademarks "
-        u"or trademarks of edX Inc."
+        u"\u00A9 Ethicon US, LLC 2016.  056662-160718 \n"
+        u"EdX, Open edX and Open edX logos are registered trademarks or trademarks of edX Inc. \n "   
+        u"This site is published by Ethicon US, LLC, which is solely responsible for its contents and is intended for U.S. audiences only. "
+
     ).format(org_name=microsite.get_value('PLATFORM_NAME', settings.PLATFORM_NAME))
 
 
