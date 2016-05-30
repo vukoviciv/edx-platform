@@ -20,7 +20,6 @@ from rest_framework.views import APIView
 from rest_framework.exceptions import ParseError
 from django_countries import countries
 from opaque_keys.edx.locations import SlashSeparatedCourseKey
-from microsite_configuration import microsite
 
 from openedx.core.lib.api.permissions import ApiKeyHeaderPermission
 import third_party_auth
@@ -29,6 +28,7 @@ from edxmako.shortcuts import marketing_link
 from student.forms import get_registration_extension_form
 from student.views import create_account_with_params
 from student.cookies import set_logged_in_cookies
+from openedx.core.djangoapps.theming.helpers import get_value as get_themed_value
 from openedx.core.lib.api.authentication import SessionAuthenticationAllowInactiveUser
 from util.json_request import JsonResponse
 from .preferences.api import update_email_opt_in
@@ -160,12 +160,16 @@ class RegistrationView(APIView):
     DEFAULT_FIELDS = ["email", "name", "username", "password"]
 
     EXTRA_FIELDS = [
+        "first_name",
+        "last_name",
         "city",
         "state",
         "country",
         "gender",
         "year_of_birth",
         "level_of_education",
+        "company",
+        "title",
         "mailing_address",
         "goals",
         "honor_code",
@@ -189,7 +193,7 @@ class RegistrationView(APIView):
 
         # Backwards compatibility: Honor code is required by default, unless
         # explicitly set to "optional" in Django settings.
-        self._extra_fields_setting = copy.deepcopy(microsite.get_value('REGISTRATION_EXTRA_FIELDS'))
+        self._extra_fields_setting = copy.deepcopy(get_themed_value('REGISTRATION_EXTRA_FIELDS'))
         if not self._extra_fields_setting:
             self._extra_fields_setting = copy.deepcopy(settings.REGISTRATION_EXTRA_FIELDS)
         self._extra_fields_setting["honor_code"] = self._extra_fields_setting.get("honor_code", "required")
@@ -632,6 +636,86 @@ class RegistrationView(APIView):
             required=required
         )
 
+    def _add_company_field(self, form_desc, required=False):
+        """Add a Company field to a form description.
+
+        Arguments:
+            form_desc: A form description
+
+        Keyword Arguments:
+            required (bool): Whether this field is required; defaults to False
+
+        """
+        # Translators: This label appears above a field on the registration form
+        # which allows the user to input the Company
+        company_label = _(u"Company")
+
+        form_desc.add_field(
+            "company",
+            label=company_label,
+            required=required
+        )
+
+    def _add_title_field(self, form_desc, required=False):
+        """Add a Title field to a form description.
+
+        Arguments:
+            form_desc: A form description
+
+        Keyword Arguments:
+            required (bool): Whether this field is required; defaults to False
+
+        """
+        # Translators: This label appears above a field on the registration form
+        # which allows the user to input the Title
+        title_label = _(u"Title")
+
+        form_desc.add_field(
+            "title",
+            label=title_label,
+            required=required
+        )
+
+    def _add_first_name_field(self, form_desc, required=False):
+        """Add a First Name field to a form description.
+
+        Arguments:
+            form_desc: A form description
+
+        Keyword Arguments:
+            required (bool): Whether this field is required; defaults to False
+
+        """
+        # Translators: This label appears above a field on the registration form
+        # which allows the user to input the First Name
+        first_name_label = _(u"First Name")
+
+        form_desc.add_field(
+            "first_name",
+            label=first_name_label,
+            required=required
+        )
+
+    def _add_last_name_field(self, form_desc, required=False):
+        """Add a Last Name field to a form description.
+
+        Arguments:
+            form_desc: A form description
+
+        Keyword Arguments:
+            required (bool): Whether this field is required; defaults to False
+
+        """
+        # Translators: This label appears above a field on the registration form
+        # which allows the user to input the First Name
+        last_name_label = _(u"Last Name")
+
+        form_desc.add_field(
+            "last_name",
+            label=last_name_label,
+            required=required
+        )
+
     def _add_country_field(self, form_desc, required=True):
         """Add a country field to a form description.
 
@@ -677,9 +761,9 @@ class RegistrationView(APIView):
         else:
             # Translators: This is a legal document users must agree to
             # in order to register a new account.
-            terms_text = _(u"Terms of Service and Honor Code")
+            terms_text = _(u"Privacy Policy")
 
-        terms_link = u"<a href=\"{url}\">{terms_text}</a>".format(
+        terms_link = u'<a href="http://www.ethicon.com/healthcare-professionals/privacy-policy">{terms_text}</a>'.format(
             url=marketing_link("HONOR"),
             terms_text=terms_text
         )
@@ -687,14 +771,14 @@ class RegistrationView(APIView):
         # Translators: "Terms of Service" is a legal document users must agree to
         # in order to register a new account.
         label = _(u"I agree to the {platform_name} {terms_of_service}.").format(
-            platform_name=settings.PLATFORM_NAME,
+            platform_name=get_themed_value("PLATFORM_NAME", settings.PLATFORM_NAME),
             terms_of_service=terms_link
         )
 
         # Translators: "Terms of Service" is a legal document users must agree to
         # in order to register a new account.
         error_msg = _(u"You must agree to the {platform_name} {terms_of_service}.").format(
-            platform_name=settings.PLATFORM_NAME,
+            platform_name=get_themed_value("PLATFORM_NAME", settings.PLATFORM_NAME),
             terms_of_service=terms_link
         )
 
@@ -730,14 +814,14 @@ class RegistrationView(APIView):
         # Translators: "Terms of service" is a legal document users must agree to
         # in order to register a new account.
         label = _(u"I agree to the {platform_name} {terms_of_service}.").format(
-            platform_name=settings.PLATFORM_NAME,
+            platform_name=get_themed_value("PLATFORM_NAME", settings.PLATFORM_NAME),
             terms_of_service=terms_link
         )
 
         # Translators: "Terms of service" is a legal document users must agree to
         # in order to register a new account.
         error_msg = _(u"You must agree to the {platform_name} {terms_of_service}.").format(
-            platform_name=settings.PLATFORM_NAME,
+            platform_name=get_themed_value("PLATFORM_NAME", settings.PLATFORM_NAME),
             terms_of_service=terms_link
         )
 
