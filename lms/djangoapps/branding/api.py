@@ -116,8 +116,9 @@ def _footer_copyright():
         # Please do not translate any of these trademarks and company names.
         u"\u00A9 Ethicon US, LLC 2016.  056662-160718 EdX, Open edX and Open edX logos are registered trademarks or trademarks of edX Inc."
         u" \n"
+        <p>
         u"This site is published by Ethicon US, LLC, which is solely responsible for its contents and is intended for U.S. audiences only. "
-
+        </p>
     ).format(org_name=microsite.get_value('PLATFORM_NAME', settings.PLATFORM_NAME))
 
 
