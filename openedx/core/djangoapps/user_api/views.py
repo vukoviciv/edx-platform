@@ -157,7 +157,7 @@ class LoginSessionView(APIView):
 class RegistrationView(APIView):
     """HTTP end-points for creating a new user. """
 
-    DEFAULT_FIELDS = ["email", "name", "username", "password"]
+    DEFAULT_FIELDS = ["terms_of_service","email", "name", "username", "password"]
 
     EXTRA_FIELDS = [
         "first_name",
@@ -172,8 +172,7 @@ class RegistrationView(APIView):
         "title",
         "mailing_address",
         "goals",
-        "honor_code",
-        "terms_of_service",
+        
     ]
 
     # This end-point is available to anonymous users,
@@ -813,7 +812,7 @@ class RegistrationView(APIView):
 
         # Translators: "Terms of service" is a legal document users must agree to
         # in order to register a new account.
-        label = _(u"I agree to the {platform_name} {terms_of_service}.").format(
+        label = _(u"I agree to have my personal information governed by the Ethicon {terms_of_service}.").format(
             platform_name=get_themed_value("PLATFORM_NAME", settings.PLATFORM_NAME),
             terms_of_service=terms_link
         )
