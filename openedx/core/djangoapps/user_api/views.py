@@ -804,8 +804,8 @@ class RegistrationView(APIView):
         """
         # Translators: This is a legal document users must agree to
         # in order to register a new account.
-        terms_text = _(u"Terms of Service")
-        terms_link = u"<a href=\"{url}\">{terms_text}</a>".format(
+        terms_text = _(u"Privacy Policy")
+        terms_link = u"<a href=\"http://www.ethicon.com/healthcare-professionals/privacy-policy\">{terms_text}</a>".format(
             url=marketing_link("TOS"),
             terms_text=terms_text
         )
